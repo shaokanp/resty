@@ -1,4 +1,4 @@
-RestDocBuilder::Application.routes.draw do
+Resty::Application.routes.draw do
 
   root :to => 'resources#index'
 

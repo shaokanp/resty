@@ -1,0 +1,53 @@
+$url-color: #3CB4FF;
+$th-color: #787878;
+$description-color:  #787878;
+$tr-border-color: #C8C8C8;
+
+caption{
+	text-align: left;
+	font-size: 14px;
+}
+
+table{
+	width: 500px;
+	border-collapse: collapse;
+	thead:first-child{
+		width: '35%';
+	}
+	thead:last-child{
+		width: '65%';
+	}
+
+}
+
+th{
+	color: $th-color;
+	font-size: 12px;
+	text-align: left;
+}
+
+tr{
+	border: solid;
+	border-width: 1px 0;
+	border-color: $tr-border-color;
+	height: 40px;
+}
+
+
+.rest-url{
+	a{
+		color: $url-color;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+			background-color: #FFFFFF;
+		}
+		&:visited{
+			color: $url-color;
+		}
+	}
+}
+
+.description{
+	color: $description-color;
+}

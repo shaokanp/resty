@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @endpoint.description %>
+</p>
+
+<p>
+  <strong>Method type:</strong>
+  <%= @endpoint.method_type %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @endpoint.url %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @endpoint.detail %>
+</p>
+
+<p>
+  <strong>Resource:</strong>
+  <%= @endpoint.resource_id %>
+</p>
+
+<%= link_to 'Edit', edit_endpoint_path(@endpoint) %> |
+<%= link_to 'Back', resources_path %>

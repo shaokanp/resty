@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  optional: false
+  example_value: MyString
+  endpoint_id: 1
+
+two:
+  name: MyString
+  optional: false
+  example_value: MyString
+  endpoint_id: 1

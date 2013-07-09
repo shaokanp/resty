@@ -1,0 +1,35 @@
+<h1>Restful API</h1>
+
+
+<p><%= link_to 'New Resource', new_resource_path %></p>
+
+<% @resources.each do |resource| %>
+  <table>
+    <caption>
+      <strong><%=resource.name%></strong> <!-- <%= link_to 'Show', resource %> <%= link_to 'Edit', edit_resource_path(resource) %> <%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %> -->
+      <br><%=resource.description%>
+    </caption>
+    <thead>
+      <tr>
+        <th>
+          Endpoints        
+        </th>
+        <th>
+          Description        
+        </th>
+      </tr>
+    </thead>
+    <% resource.endpoints.each do |endpoint| %>
+      <tr>
+        <td class="rest-url"><%= link_to endpoint.method_type + ' ' + endpoint.url, endpoint %></td>
+        <td class="description"><%= endpoint.description %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to 'New Endpoint', new_endpoint_path %>
+  <br>
+  <br>
+  <br>
+<% end %>
+
+<br>

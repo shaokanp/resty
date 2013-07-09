@@ -1,0 +1,33 @@
+<h1>Listing parameters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Optional</th>
+      <th>Example value</th>
+      <th>Endpoint</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parameters.each do |parameter| %>
+      <tr>
+        <td><%= parameter.name %></td>
+        <td><%= parameter.optional %></td>
+        <td><%= parameter.example_value %></td>
+        <td><%= parameter.endpoint_id %></td>
+        <td><%= link_to 'Show', parameter %></td>
+        <td><%= link_to 'Edit', edit_parameter_path(parameter) %></td>
+        <td><%= link_to 'Destroy', parameter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Parameter', new_parameter_path %>

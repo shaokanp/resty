@@ -34,6 +34,7 @@ class EndpointsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @endpoint.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 

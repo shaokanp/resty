@@ -1,0 +1,15 @@
+
+$(document).ready(function(){
+	$('button.new-endpoint-btn').click(function(event){
+		$(this).siblings('div.new-endpoint-container').html(<%= escape_javascript(render "new_endpoint") %>);
+	});
+
+	$('button.submit-endpoint').click(function(event){
+		
+	});
+
+	$('button.cancel-new-endpoint').click(function(event){
+		
+	});
+	alert('aaa');
+});

@@ -1,0 +1,12 @@
+<div width="100%" height="50px">
+	<%= form_for(Endpoint.new, remote: true) do |f| %>
+	  	<div class="field">
+	    	<%= f.text_field :method_type %>
+	    	<%= f.text_field :url %>
+	    	<%= f.text_field :description %>
+	  	</div>
+	  	<div class="actions">
+	    	<%= f.submit %>
+		</div>
+	<% end %>
+</div>

@@ -26,10 +26,13 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(resource_params)
     
-    if @resource.save
-      render json: @resource.to_json(only: :id), status: :created, location: @resource
-    else
-      render json: @resource.errors, status: :unprocessable_entity
+    respond_to do |format|
+      if @resource.save
+        format.json {render json: @resource.to_json(only: :id), status: :created, location: @resource}
+      else
+        format.json {render json: @resource.errors, status: :unprocessable_entity}
+      end
+      format.js
     end
 
   end

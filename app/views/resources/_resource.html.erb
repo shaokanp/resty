@@ -1,0 +1,7 @@
+<%= div_for resource do %>
+  <%= link_to "Created resource : #{resource.name}", resource %>
+  <div class="actions">
+    <%= link_to 'edit', edit_resource_path(resource) %>
+    <%= link_to 'delete', resource, method: :delete, remote: true %>
+  </div>
+<% end %>

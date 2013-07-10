@@ -1,0 +1,6 @@
+<% if @resource.new_record? %>
+  $('input#resource_name').effect('highlight', { color: 'red' });
+<% else %>
+  $('div#resource').append("<%= escape_javascript(render @resource) %>");
+  $('div#<%= dom_id(@resource) %>').effect('highlight');
+<% end %>

@@ -1,0 +1,6 @@
+<%= div_for endpoint do %>
+	<tr>
+	  <td class="rest-url"><%= link_to endpoint.method_type + ' ' + endpoint.url, endpoint %></td>
+	  <td class="description"><%= endpoint.description %></td>
+	</tr>
+<% end %>

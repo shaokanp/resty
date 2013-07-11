@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 	$('button.new-endpoint-btn').click(function(event){
-
+		$(this).siblings('div.new-endpoint-container').removeClass('hidden');
 		$(this).hide();
 	});
 

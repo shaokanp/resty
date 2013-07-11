@@ -2,6 +2,7 @@ $url-color: #3CB4FF;
 $th-color: #787878;
 $description-color:  #787878;
 $tr-border-color: #C8C8C8;
+$tr-hover-background-color: #DFDFDF;
 
 caption{
 	text-align: left;
@@ -9,15 +10,14 @@ caption{
 }
 
 table{
-	width: 500px;
+	width: 100%;
 	border-collapse: collapse;
 	thead:first-child{
-		width: '35%';
+		width: 50%;
 	}
 	thead:last-child{
-		width: '65%';
+		width: 50%;
 	}
-
 }
 
 th{
@@ -33,6 +33,9 @@ tr{
 	height: 40px;
 }
 
+tr.endpoint-row:hover{
+	background-color: $tr-hover-background-color;
+}
 
 .rest-url{
 	a{
@@ -54,4 +57,8 @@ tr{
 
 .hidden{
 	display:none;
+}
+
+.v-hidden{
+	visibility: hidden;
 }

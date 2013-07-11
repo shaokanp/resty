@@ -6296,3 +6296,56 @@ Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-11 00:20:45
 
 
 Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-11 00:20:45 +0800
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-11 21:27:11 +0800
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (10.8ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mEndpoint Load (3.2ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 1]]
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 2]]
+  [1m[35mEndpoint Load (0.2ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 3]]
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 4]]
+  Rendered resources/index.html.erb within layouts/application (448.6ms)
+Completed 200 OK in 561ms (Views: 520.4ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800

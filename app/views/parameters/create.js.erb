@@ -1,0 +1,6 @@
+<% if @parameter.new_record? %>
+  $('input#endpoint_name').effect('highlight', { color: 'red' });
+<% else %>
+  $('#parameters').append("<%= escape_javascript(render @parameter) %>");
+  $('div#<%= dom_id(@parameter) %>').effect('highlight');
+<% end %>

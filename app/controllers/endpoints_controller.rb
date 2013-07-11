@@ -50,6 +50,7 @@ class EndpointsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @endpoint.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
@@ -60,6 +61,7 @@ class EndpointsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to endpoints_url }
       format.json { head :no_content }
+      format.js
     end
   end
 

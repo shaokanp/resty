@@ -1,29 +1,36 @@
-<p id="notice"><%= notice %></p>
+<h1><%=@endpoint.method_type + ' ' + @endpoint.url%></h1>
 
 <p>
-  <strong>Description:</strong>
-  <%= @endpoint.description %>
+  	<strong>Description</strong><br>
+  	<%= @endpoint.description %>
 </p>
 
 <p>
-  <strong>Method type:</strong>
-  <%= @endpoint.method_type %>
+  	<strong>Detail</strong><br>
+  	<%= @endpoint.detail %>
 </p>
 
 <p>
-  <strong>Url:</strong>
-  <%= @endpoint.url %>
-</p>
+	<strong>Parameters</strong><br>
+		<table id="parameters">
+	  		<%= render @endpoint.parameters %>
+	  	</table>
 
-<p>
-  <strong>Detail:</strong>
-  <%= @endpoint.detail %>
-</p>
+	  	<div class="new-endpoint-container hidden">
+		    <div width="100%" height="50px">
+		      <%= form_for([@resource, @endpoint, Parameter.new], remote:true) do |f| %>
+		        <div class="field">
+		            <%= f.text_field :name %>
+		            <%= f.text_field :example_value %>
+		            <%= f.text_field :description %>
+		        </div>
+		        <div class="actions">
+		        	<%= f.submit %>
+		        </div>
+		      <% end %>
+		    </div>
+		</div>
 
-<p>
-  <strong>Resource:</strong>
-  <%= @endpoint.resource_id %>
-</p>
+		<button class="new-endpoint-btn">New Parameter</button>
 
-<%= link_to 'Edit', edit_endpoint_path(@endpoint) %> |
-<%= link_to 'Back', resources_path %>
+</p>

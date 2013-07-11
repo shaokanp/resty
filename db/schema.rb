@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130707162222) do
+ActiveRecord::Schema.define(version: 20130711165147) do
 
   create_table "endpoints", force: true do |t|
     t.text     "description"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20130707162222) do
     t.integer  "endpoint_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
+    t.integer  "resource_id"
   end
 
   create_table "resources", force: true do |t|

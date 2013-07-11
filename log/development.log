@@ -6349,3 +6349,33 @@ Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-11 21:27:12 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddDescriptionToParameters (20130711163736)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "parameters" ADD "description" text[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130711163736"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mParameter Load (0.1ms)[0m  [1mSELECT "parameters".* FROM "parameters"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (6.0ms)[0m  [1mINSERT INTO "parameters" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Thu, 11 Jul 2013 16:44:33 UTC +00:00], ["updated_at", Thu, 11 Jul 2013 16:44:33 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "parameters" SET "name" = ?, "description" = ?, "updated_at" = ? WHERE "parameters"."id" = 4  [["name", "haha"], ["description", "haha description"], ["updated_at", Thu, 11 Jul 2013 16:45:01 UTC +00:00]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+DEPRECATION WARNING: Calling #find(:last) is deprecated. Please call #last directly instead. (called from irb_binding at (irb):7)
+  [1m[35mParameter Load (0.2ms)[0m  SELECT "parameters".* FROM "parameters" ORDER BY "parameters"."id" DESC LIMIT 1
+DEPRECATION WARNING: Calling #find(:last) is deprecated. Please call #last directly instead. (called from irb_binding at (irb):8)
+  [1m[36mParameter Load (0.2ms)[0m  [1mSELECT "parameters".* FROM "parameters" ORDER BY "parameters"."id" DESC LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddResourceIdToParameters (20130711165147)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "parameters" ADD "resource_id" integer[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130711165147"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+DEPRECATION WARNING: Calling #find(:last) is deprecated. Please call #last directly instead. (called from irb_binding at (irb):1)
+  [1m[36mParameter Load (0.2ms)[0m  [1mSELECT "parameters".* FROM "parameters" ORDER BY "parameters"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (3.3ms)[0m  [1mUPDATE "parameters" SET "resource_id" = ?, "endpoint_id" = ?, "updated_at" = ? WHERE "parameters"."id" = 4[0m  [["resource_id", 1], ["endpoint_id", 1], ["updated_at", Thu, 11 Jul 2013 16:53:00 UTC +00:00]]
+  [1m[35m (2.6ms)[0m  commit transaction

@@ -1,10 +1,11 @@
 class ParametersController < ApplicationController
+  before_action :set_resource_endpoint
   before_action :set_parameter, only: [:show, :edit, :update, :destroy]
 
   # GET /parameters
   # GET /parameters.json
   def index
-    @parameters = Parameter.all
+    @parameters = @endpoint.parameters.all
   end
 
   # GET /parameters/1
@@ -24,16 +25,17 @@ class ParametersController < ApplicationController
   # POST /parameters
   # POST /parameters.json
   def create
-    @parameter = Parameter.new(parameter_params)
+    @parameter = @endpoint.parameters.new(parameter_params)
 
     respond_to do |format|
       if @parameter.save
-        format.html { redirect_to @parameter, notice: 'Parameter was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @parameter }
+        format.html { redirect_to [@resource, @endpoint, @parameter], notice: 'Parameter was successfully created.' }
+        format.json { render action: 'show', status: :created, location: [@resource, @endpoint, @parameter] }
       else
         format.html { render action: 'new' }
         format.json { render json: @parameter.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
@@ -42,12 +44,13 @@ class ParametersController < ApplicationController
   def update
     respond_to do |format|
       if @parameter.update(parameter_params)
-        format.html { redirect_to @parameter, notice: 'Parameter was successfully updated.' }
+        format.html { redirect_to [@resource, @endpoint, @parameter], notice: 'Parameter was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @parameter.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
@@ -58,10 +61,17 @@ class ParametersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to parameters_url }
       format.json { head :no_content }
+      format.js
     end
   end
 
   private
+
+    def set_resource_endpoint
+      @resource = Resource.find(params[:resource_id])
+      @endpoint = @resource.endpoints.find(params[:endpoint_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_parameter
       @parameter = Parameter.find(params[:id])

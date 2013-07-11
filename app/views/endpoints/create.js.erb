@@ -1,6 +1,6 @@
 <% if @endpoint.new_record? %>
   $('input#endpoint_name').effect('highlight', { color: 'red' });
 <% else %>
-  $('div#endpoint').append("<%= escape_javascript(render @endpoint) %>");
+  $('#resource_' + <%= @endpoint.resource_id %> + ' .endpoints').append("<%= escape_javascript(render @endpoint) %>");
   $('div#<%= dom_id(@endpoint) %>').effect('highlight');
 <% end %>

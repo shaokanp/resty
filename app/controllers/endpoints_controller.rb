@@ -1,10 +1,11 @@
 class EndpointsController < ApplicationController
+  before_action :set_resource
   before_action :set_endpoint, only: [:show, :edit, :update, :destroy]
 
   # GET /endpoints
   # GET /endpoints.json
   def index
-    @endpoints = Endpoint.all
+    @endpoints = @resource.endpoints
   end
 
   # GET /endpoints/1
@@ -14,7 +15,7 @@ class EndpointsController < ApplicationController
 
   # GET /endpoints/new
   def new
-    @endpoint = Endpoint.new
+    @endpoint = @resource.endpoints.new
   end
 
   # GET /endpoints/1/edit
@@ -24,12 +25,12 @@ class EndpointsController < ApplicationController
   # POST /endpoints
   # POST /endpoints.json
   def create
-    @endpoint = Endpoint.new(endpoint_params)
+    @endpoint = @resource.endpoints.new(endpoint_params)
 
     respond_to do |format|
       if @endpoint.save
-        format.html { redirect_to @endpoint, notice: 'Endpoint was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @endpoint }
+        format.html { redirect_to [@resource,@endpoint], notice: 'Endpoint was successfully created.' }
+        format.json { render action: 'show', status: :created, location: [@resource,@endpoint] }
       else
         format.html { render action: 'new' }
         format.json { render json: @endpoint.errors, status: :unprocessable_entity }
@@ -63,6 +64,11 @@ class EndpointsController < ApplicationController
   end
 
   private
+
+    def set_resource
+      @resource = Resource.find(params[:resource_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_endpoint
       @endpoint = Endpoint.find(params[:id])

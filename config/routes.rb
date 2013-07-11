@@ -4,9 +4,11 @@ Resty::Application.routes.draw do
 
   resources :parameters
 
-  resources :endpoints
+  
 
-  resources :resources
+  resources :resources do
+    resources :endpoints
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

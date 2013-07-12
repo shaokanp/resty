@@ -5,6 +5,8 @@ $description-color:  #787878;
 $tr-border-color: #C8C8C8;
 $tr-hover-background-color: #E4E4E4;
 
+
+
 div#global-container{
 	margin: 0 auto 0 auto;
 	width:800px;
@@ -18,12 +20,7 @@ caption{
 table{
 	width: 100%;
 	border-collapse: collapse;
-	thead tr th:first-child{
-		width: 35%;
-	}
-	thead tr th:last-child{
-		width: 65%;
-	}
+	margin-bottom: 10px;
 }
 
 th{

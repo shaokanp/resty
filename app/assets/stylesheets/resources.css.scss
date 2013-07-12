@@ -1,6 +1,8 @@
 // Place all the styles related to the resources controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "utilities.css";
+
 caption.resource-title{
 	div:first-child{
 		float:left;
@@ -8,4 +10,38 @@ caption.resource-title{
 	div:last-child{
 		float:right;
 	}
+}
+
+thead tr th:first-child{
+	width: 35%;
+}
+
+thead tr th:last-child{
+	width: 65%;
+}
+
+.type-input-field{
+	width: 10%;
+	height: 40px;
+	display: block;
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 5px;
+}
+
+.url-input-field{
+	width: 20%;
+	height: 40px;
+	display: block;
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 5px;
+}
+
+.description-input-field{
+	width: 60%;
+	height: 40px;
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 5px;
 }

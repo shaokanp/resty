@@ -1,4 +1,7 @@
-<tr>
+<tr class="data-row" id="<%= 'parameter-' + @endpoint.id.to_s + '-' + parameter.id.to_s %>">
 	<td class="parameter-name"><%= parameter.name %></td>
-	<td class="parameter-description"><%= parameter.description %></td>
+	<td class="parameter-description">
+		<%= parameter.description %>
+		<div class="edit-btn-div v-hidden"><%= link_to 'Delete', [@project, @endpoint, parameter], method: :delete, remote: true %></div>
+	</td>
 </tr>

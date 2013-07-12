@@ -3,3 +3,40 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "utilities.css";
+
+.parameter-name{
+	font-weight: bold;
+	font-size: 12px;
+	width: 30%;
+}
+
+
+.parameter-description{
+	width: 70%;
+}
+
+.name-input-field{
+	width: 15%;
+	height: 40px;
+	display: block;
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 5px;
+}
+
+.example-input-field{
+	width: 15%;
+	height: 40px;
+	display: block;
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 5px;
+}
+
+.description-input-field{
+	width: 60%;
+	height: 40px;
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 5px;
+}

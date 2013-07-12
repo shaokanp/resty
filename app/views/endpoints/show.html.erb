@@ -18,13 +18,12 @@
 			<table id="parameters">
 		  		<%= render @endpoint.parameters %>
 		  	</table>
-
 		  	<div class="new-form-container hidden">
 			      <%= form_for([@project, @endpoint, Parameter.new], remote:true) do |f| %>
 			        <div class="field">
-			            <%= f.text_field :name %>
-			            <%= f.text_field :example_value %>
-			            <%= f.text_field :description %>
+			            <%= f.text_field :name , class: "name-input-field" , placeholder: "Name"%>
+			            <%= f.text_field :example_value , class: "example-input-field" , placeholder: "Example Value"%>
+			            <%= f.text_area :description , class: "description-input-field" , placeholder: "Description"%>
 			        </div>
 			        <div class="actions">
 			        	<%= f.submit %>

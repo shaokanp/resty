@@ -23,13 +23,12 @@
 	  	<%= render resource.endpoints %>
 	  </tbody>
 	</table>
-	<br>
 	<div class="new-form-container hidden">
 	      <%= form_for([@project,Endpoint.new], remote:true) do |f| %>
 	        <div class="field">
-	            <%= f.text_field :method_type %>
-	            <%= f.text_field :url %>
-	            <%= f.text_field :description %>
+	            <%= f.text_field :method_type , class: "type-input-field" , placeholder: "Method Type" %>
+	            <%= f.text_field :url , class: "url-input-field" , placeholder: "URI" %>
+	            <%= f.text_area :description , class: "description-input-field" , placeholder: "Description" %>
 	            <%= f.hidden_field :resource_id, :value => resource.id %>
 	        </div>
 	        <div class="actions">

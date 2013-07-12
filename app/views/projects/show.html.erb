@@ -2,6 +2,7 @@
 
 <div id="global-container">
   <h1><%= @project.name %></h1>
+  <br>
   <div class="new-form-container hidden">
       <%= form_for([@project, Resource.new], remote:true) do |f| %>
           <div class="field">
@@ -15,6 +16,8 @@
       <button class="cancel-creation">Cancel</button>
   </div>
    <button class="new-row-btn">New Resource</button>
+   <br>
+   <br>
   <div id="resources">
     <%= render @project.resources %>
   </div>

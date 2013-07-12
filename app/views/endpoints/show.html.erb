@@ -1,39 +1,39 @@
-<h1><%=@endpoint.method_type + ' ' + @endpoint.url%></h1>
+<% javascript_include_tag "application" %>
 
-<p>
-  	<strong>Description</strong><br>
-  	<%= @endpoint.description %>
-</p>
+<div id="global-container">
+	<h1><%=@endpoint.method_type + ' ' + @endpoint.url%></h1>
 
-<p>
-  	<strong>Detail</strong><br>
-  	<%= @endpoint.detail %>
-</p>
+	<p>
+	  	<strong>Description</strong><br>
+	  	<%= @endpoint.description %>
+	</p>
 
-<p>
-	<strong>Parameters</strong><br>
-		<table id="parameters">
-	  		<%= render @endpoint.parameters %>
-	  	</table>
+	<p>
+	  	<strong>Detail</strong><br>
+	  	<%= @endpoint.detail %>
+	</p>
 
-	  	<div class="new-form-container hidden">
-		      <%= form_for([@project, @endpoint, Parameter.new], remote:true) do |f| %>
-		        <div class="field">
-		            <%= f.text_field :name %>
-		            <%= f.text_field :example_value %>
-		            <%= f.text_field :description %>
-		        </div>
-		        <div class="actions">
-		        	<%= f.submit %>
-		        </div>
-		      <% end %>
-		    <div class="actions" style="float:left;">
-		    	<%= f.submit %>
-		    </div>
-		  <% end %>
-		  <button class="cancel-creation">Cancel</button>
-		</div>
+	<p>
+		<strong>Parameters</strong><br>
+			<table id="parameters">
+		  		<%= render @endpoint.parameters %>
+		  	</table>
 
-		<button class="new-row-btn">New Parameter</button>
+		  	<div class="new-form-container hidden">
+			      <%= form_for([@project, @endpoint, Parameter.new], remote:true) do |f| %>
+			        <div class="field">
+			            <%= f.text_field :name %>
+			            <%= f.text_field :example_value %>
+			            <%= f.text_field :description %>
+			        </div>
+			        <div class="actions">
+			        	<%= f.submit %>
+			        </div>
+			      <% end %>
+			  <button class="cancel-creation">Cancel</button>
+			</div>
 
-</p>
+			<button class="new-row-btn">New Parameter</button>
+
+	</p>
+<div style="margin: 0 auto 0 auto; width:800px;">

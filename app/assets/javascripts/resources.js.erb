@@ -5,11 +5,11 @@ $(document).ready(function(){
 		$(this).hide();
 	});
 
-	$(document).delegate('tr.endpoint-row', 'mouseover', function(event){
+	$(document).delegate('tr.data-row', 'mouseover', function(event){
 		$(this).find('div.edit-btn-div').removeClass('v-hidden');
 	});
 
-	$(document).delegate('tr.endpoint-row', 'mouseleave', function(event){
+	$(document).delegate('tr.data-row', 'mouseleave', function(event){
 		$(this).find('div.edit-btn-div').addClass('v-hidden');
 	});
 

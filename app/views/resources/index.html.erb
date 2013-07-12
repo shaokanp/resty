@@ -2,14 +2,14 @@
 
 <h1>Restful API</h1>
 
-<div style="margin: 0 auto 0 auto; width:800px;">
+<div id="global-container">
   <div class="new-form-container hidden">
       <%= form_for(Resource.new, remote:true) do |f| %>
           <div class="field">
             <%= f.text_field :name %>
             <%= f.text_field :description %>
           </div>
-          <div class="actions" style="float:left;">
+          <div class="actions">
             <%= f.submit %>
           </div>
       <% end %>

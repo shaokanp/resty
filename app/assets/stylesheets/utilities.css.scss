@@ -5,6 +5,11 @@ $description-color:  #787878;
 $tr-border-color: #C8C8C8;
 $tr-hover-background-color: #E4E4E4;
 
+div#global-container{
+	margin: 0 auto 0 auto;
+	width:800px;
+}
+
 caption{
 	text-align: left;
 	font-size: 14px;
@@ -40,6 +45,10 @@ tr.data-row:hover{
 
 caption{
 	margin-bottom:10px;
+}
+
+.new-form-container div.actions{
+	float:left;
 }
 
 .edit-btn-div{

@@ -2,11 +2,11 @@
   	<table>
 	  <caption class="resource-title">
 	  	<div>
-		  	<strong><%=resource.name%></strong> <!-- <%= link_to 'Show', resource %> <%= link_to 'Edit', edit_resource_path(resource) %> <%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %> -->
+		  	<strong><%=resource.name%></strong> <!-- <%= link_to 'Show', [@project,resource] %> <%= link_to 'Edit', edit_project_resource_path(@project.id, resource.id) %> <%= link_to 'Destroy', [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %> -->
 		    <br><span class="description"><%=resource.description%></span>
 		</div>
 		<div class="edit-btn-div v-hidden">
-			<%= link_to 'Delete', resource_path(resource.id), method: :delete, remote: true %>
+			<%= link_to 'Delete', [@project,resource], method: :delete, remote: true %>
 		</div>
 	  </caption>
 	  <thead>

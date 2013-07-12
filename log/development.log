@@ -11944,3 +11944,2996 @@ Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 22:29:57
 =======
 >>>>>>> 58c04dc60ee5e691d7d7d1bd4a1e18af0d2a18e1
 >>>>>>> ee02569df52b5a7a5845e985e193f14443e369b5
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RemoveResourceIdFromParameters (20130712122244)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TEMPORARY TABLE "aparameters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "optional" boolean, "example_value" varchar(255), "endpoint_id" integer, "created_at" datetime, "updated_at" datetime, "description" text, "resource_id" integer) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "parameters"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "parameters"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "parameters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "optional" boolean, "example_value" varchar(255), "endpoint_id" integer, "created_at" datetime, "updated_at" datetime, "description" text) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "aparameters"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "aparameters"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130712122244"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+Migrating to CreateUsers (20130712123715)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130712123715"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to CreateProjects (20130712123850)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130712123850"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateParticipants (20130712124348)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "participants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "project_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_participants_on_user_id" ON "participants" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_participants_on_project_id" ON "participants" ("project_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130712124348"]]
+  [1m[35m (4.8ms)[0m  commit transaction
+Migrating to AddProjectIdToResources (20130712124916)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "resources" ADD "project_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130712124916"]]
+  [1m[35m (5.0ms)[0m  commit transaction
+Migrating to AddProjectIdToEndpoints (20130712124936)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "endpoints" ADD "project_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130712124936"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to AddProjectIdToParameters (20130712140847)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "parameters" ADD "project_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130712140847"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:44:52 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Completed 404 Not Found in 47ms
+
+ActiveRecord::RecordNotFound (Couldn't find Project with id=1):
+  app/controllers/projects_controller.rb:69:in `set_project'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.5ms)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO "projects" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Fri, 12 Jul 2013 14:45:33 UTC +00:00], ["updated_at", Fri, 12 Jul 2013 14:45:33 UTC +00:00]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "projects" SET "name" = ?, "description" = ?, "updated_at" = ? WHERE "projects"."id" = 1[0m  [["name", "Resty"], ["description", "Rest Api Doc Made Easy"], ["updated_at", Fri, 12 Jul 2013 14:46:00 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:47:03 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (2.7ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (454.7ms)
+Completed 200 OK in 621ms (Views: 557.9ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 22:47:04 +0800
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 45ms (Views: 10.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:35 +0800
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 11ms (Views: 10.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 22:48:37 +0800
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 15ms (Views: 13.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 22:51:21 +0800
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:52:27 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 12ms (Views: 10.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 22:52:28 +0800
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:54:27 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (4.4ms)
+Completed 500 Internal Server Error in 19ms
+
+ActionView::Template::Error (Invalid CSS after "	float:left:": expected pseudoclass or pseudoelement, was "}"
+  (in /Users/Amy/Dropbox/workspace/resty/app/assets/stylesheets/utilities.css.scss:46)):
+    2: <html>
+    3: <head>
+    4:   <title>Resty</title>
+    5:   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    6:   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/utilities.css.scss:46
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___498991457287625594_70158512908080'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (11.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:54:48 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 54ms (Views: 52.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 22:54:49 +0800
+
+
+Started POST "/projects/1/resources" for 127.0.0.1 at 2013-07-12 22:55:50 +0800
+Processing by ResourcesController#create as JS
+  Parameters: {"utf8"=>"✓", "resource"=>{"name"=>"User", "description"=>"The users."}, "commit"=>"Create Resource", "project_id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "resources" ("created_at", "description", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 12 Jul 2013 14:55:50 UTC +00:00], ["description", "The users."], ["name", "User"], ["project_id", 1], ["updated_at", Fri, 12 Jul 2013 14:55:50 UTC +00:00]]
+  [1m[35m (5.4ms)[0m  commit transaction
+  Rendered resources/_resource.html.erb (13.6ms)
+  Rendered resources/create.js.erb (15.2ms)
+Completed 500 Internal Server Error in 30ms
+
+ActionView::Template::Error (undefined method `resource_path' for #<#<Class:0x007f9e1be4ea10>:0x007f9e1be4dbb0>):
+    2:   	<table>
+    3: 	  <caption class="resource-title">
+    4: 	  	<div>
+    5: 		  	<strong><%=resource.name%></strong> <!-- <%= link_to 'Show', resource %> <%= link_to 'Edit', edit_resource_path(resource) %> <%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %> -->
+    6: 		    <br><span class="description"><%=resource.description%></span>
+    7: 		</div>
+    8: 		<div class="edit-btn-div v-hidden">
+  app/views/resources/_resource.html.erb:5:in `block in _app_views_resources__resource_html_erb__2862667397446085581_70158513010940'
+  app/views/resources/_resource.html.erb:1:in `_app_views_resources__resource_html_erb__2862667397446085581_70158513010940'
+  app/views/resources/create.js.erb:4:in `_app_views_resources_create_js_erb___425341405643179439_70158524791260'
+  app/controllers/resources_controller.rb:30:in `create'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:59:07 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered resources/_resource.html.erb (3.4ms)
+  Rendered projects/show.html.erb within layouts/application (10.9ms)
+Completed 500 Internal Server Error in 14ms
+
+ActionView::Template::Error (No route matches {:id=>nil, :controller=>"resources", :action=>"edit", :project_id=>#<Resource id: 20, name: "User", description: "The users.", created_at: "2013-07-12 14:55:50", updated_at: "2013-07-12 14:55:50", project_id: 1>, :format=>nil} missing required keys: [:id]):
+    2:   	<table>
+    3: 	  <caption class="resource-title">
+    4: 	  	<div>
+    5: 		  	<strong><%=resource.name%></strong> <!-- <%= link_to 'Show', [@project,resource] %> <%= link_to 'Edit', edit_project_resource_path(resource) %> <%= link_to 'Destroy', [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %> -->
+    6: 		    <br><span class="description"><%=resource.description%></span>
+    7: 		</div>
+    8: 		<div class="edit-btn-div v-hidden">
+  app/views/resources/_resource.html.erb:5:in `block in _app_views_resources__resource_html_erb__2862667397446085581_70158534568420'
+  app/views/resources/_resource.html.erb:1:in `_app_views_resources__resource_html_erb__2862667397446085581_70158534568420'
+  app/views/projects/show.html.erb:19:in `_app_views_projects_show_html_erb___1117653459615108965_70158510464860'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:59:13 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.2ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered resources/_resource.html.erb (1.7ms)
+  Rendered projects/show.html.erb within layouts/application (37.5ms)
+Completed 500 Internal Server Error in 41ms
+
+ActionView::Template::Error (No route matches {:id=>nil, :controller=>"resources", :action=>"edit", :project_id=>#<Resource id: 20, name: "User", description: "The users.", created_at: "2013-07-12 14:55:50", updated_at: "2013-07-12 14:55:50", project_id: 1>, :format=>nil} missing required keys: [:id]):
+    2:   	<table>
+    3: 	  <caption class="resource-title">
+    4: 	  	<div>
+    5: 		  	<strong><%=resource.name%></strong> <!-- <%= link_to 'Show', [@project,resource] %> <%= link_to 'Edit', edit_project_resource_path(resource) %> <%= link_to 'Destroy', [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %> -->
+    6: 		    <br><span class="description"><%=resource.description%></span>
+    7: 		</div>
+    8: 		<div class="edit-btn-div v-hidden">
+  app/views/resources/_resource.html.erb:5:in `block in _app_views_resources__resource_html_erb__2862667397446085581_70158534568420'
+  app/views/resources/_resource.html.erb:1:in `_app_views_resources__resource_html_erb__2862667397446085581_70158534568420'
+  app/views/projects/show.html.erb:19:in `_app_views_projects_show_html_erb___1117653459615108965_70158510464860'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (11.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 22:59:36 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.2ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 20]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (68.2ms)
+  Rendered projects/show.html.erb within layouts/application (76.5ms)
+Completed 200 OK in 85ms (Views: 82.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 22:59:36 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 22:59:36 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 22:59:36 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 22:59:36 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 22:59:36 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 22:59:37 +0800
+
+
+Started DELETE "/projects/1/resources/20" for 127.0.0.1 at 2013-07-12 22:59:43 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"20"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mResource Load (0.2ms)[0m  [1mSELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "20"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 20]]
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "resources" WHERE "resources"."id" = ?  [["id", 20]]
+  [1m[36m (5.5ms)[0m  [1mcommit transaction[0m
+Completed 500 Internal Server Error in 13ms
+
+ActionView::MissingTemplate (Missing template resources/destroy, application/destroy with {:locale=>[:en], :formats=>[:js, :html], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/Amy/Dropbox/workspace/resty/app/views"
+):
+  app/controllers/resources_controller.rb:60:in `destroy'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.7ms)
+
+
+Started POST "/projects/1/resources" for 127.0.0.1 at 2013-07-12 23:00:16 +0800
+Processing by ResourcesController#create as JS
+  Parameters: {"utf8"=>"✓", "resource"=>{"name"=>"Product", "description"=>"The products users shared"}, "commit"=>"Create Resource", "project_id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "resources" ("created_at", "description", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 12 Jul 2013 15:00:16 UTC +00:00], ["description", "The products users shared"], ["name", "Product"], ["project_id", 1], ["updated_at", Fri, 12 Jul 2013 15:00:16 UTC +00:00]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 21]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (4.9ms)
+  Rendered resources/create.js.erb (6.0ms)
+Completed 200 OK in 13ms (Views: 7.7ms | ActiveRecord: 2.1ms)
+
+
+Started DELETE "/projects/1/resources/21" for 127.0.0.1 at 2013-07-12 23:00:24 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"21"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1  [["project_id", 1], ["id", "21"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 21]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "resources" WHERE "resources"."id" = ?[0m  [["id", 21]]
+  [1m[35m (1.6ms)[0m  commit transaction
+Completed 500 Internal Server Error in 7ms
+
+ActionView::MissingTemplate (Missing template resources/destroy, application/destroy with {:locale=>[:en], :formats=>[:js, :html], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/Amy/Dropbox/workspace/resty/app/views"
+):
+  app/controllers/resources_controller.rb:60:in `destroy'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:05:23 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.2ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 18ms (Views: 15.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:05:24 +0800
+
+
+Started POST "/projects/1/resources" for 127.0.0.1 at 2013-07-12 23:05:39 +0800
+Processing by ResourcesController#create as JS
+  Parameters: {"utf8"=>"✓", "resource"=>{"name"=>"User", "description"=>"The users."}, "commit"=>"Create Resource", "project_id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "resources" ("created_at", "description", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 12 Jul 2013 15:05:39 UTC +00:00], ["description", "The users."], ["name", "User"], ["project_id", 1], ["updated_at", Fri, 12 Jul 2013 15:05:39 UTC +00:00]]
+  [1m[35m (22.1ms)[0m  commit transaction
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 22]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (6.0ms)
+  Rendered resources/create.js.erb (7.8ms)
+Completed 200 OK in 38ms (Views: 10.7ms | ActiveRecord: 23.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mResource Load (0.2ms)[0m  [1mSELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?[0m  [["project_id", 1]]
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 22]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (3.7ms)
+  Rendered projects/show.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 19ms (Views: 16.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:06:49 +0800
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.2ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 22]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (4.5ms)
+  Rendered projects/show.html.erb within layouts/application (50.0ms)
+Completed 200 OK in 59ms (Views: 57.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:07:50 +0800
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:08:14 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered projects/show.html.erb within layouts/application (7.7ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionView::Template::Error (undefined method `resource' for #<Project:0x007f9e1d1f5258>):
+    15:       <button class="cancel-creation">Cancel</button>
+    16:   </div>
+    17:    <button class="new-row-btn">New Resource</button>
+    18:   <div id="resource-<%= @project.resource.id %>">
+    19:     <%= render @project.resources %>
+    20:   </div>
+    21: </div>
+  app/views/projects/show.html.erb:18:in `_app_views_projects_show_html_erb___1117653459615108965_70158535096780'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.8ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (12.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:08:58 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.2ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 22]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (3.8ms)
+  Rendered projects/show.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 50ms (Views: 47.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:08:59 +0800
+
+
+Started POST "/projects/1/endpoints" for 127.0.0.1 at 2013-07-12 23:09:51 +0800
+Processing by EndpointsController#create as JS
+  Parameters: {"utf8"=>"✓", "endpoint"=>{"method_type"=>"GET", "url"=>"users/", "description"=>"Get all users.", "resource_id"=>"22"}, "commit"=>"Create Endpoint", "project_id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "endpoints" ("created_at", "description", "method_type", "project_id", "resource_id", "updated_at", "url") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", Fri, 12 Jul 2013 15:09:51 UTC +00:00], ["description", "Get all users."], ["method_type", "GET"], ["project_id", 1], ["resource_id", 22], ["updated_at", Fri, 12 Jul 2013 15:09:51 UTC +00:00], ["url", "users/"]]
+  [1m[36m (5.5ms)[0m  [1mcommit transaction[0m
+  Rendered endpoints/_endpoint.html.erb (1.9ms)
+  Rendered endpoints/create.js.erb (3.5ms)
+Completed 200 OK in 20ms (Views: 5.5ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:11:06 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mResource Load (0.1ms)[0m  [1mSELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?[0m  [["project_id", 1]]
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 22]]
+  Rendered endpoints/_endpoint.html.erb (1.1ms)
+  Rendered resources/_resource.html.erb (6.1ms)
+  Rendered projects/show.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 51ms (Views: 48.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:07 +0800
+
+
+Started DELETE "/projects/1/resources/22" for 127.0.0.1 at 2013-07-12 23:11:09 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"22"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1  [["project_id", 1], ["id", "22"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 22]]
+  [1m[36mParameter Load (0.2ms)[0m  [1mSELECT "parameters".* FROM "parameters" WHERE "parameters"."endpoint_id" = ?[0m  [["endpoint_id", 13]]
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "endpoints" WHERE "endpoints"."id" = ?  [["id", 13]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "resources" WHERE "resources"."id" = ?[0m  [["id", 22]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  Rendered resources/destroy.js.erb (1.1ms)
+Completed 500 Internal Server Error in 15ms
+
+ActionView::Template::Error (no implicit conversion of Fixnum into String):
+    1: $("div#<%= 'resource_' + @resource.id %>").fadeOut();
+  app/views/resources/destroy.js.erb:1:in `+'
+  app/views/resources/destroy.js.erb:1:in `_app_views_resources_destroy_js_erb__1883061587664425832_70158518027340'
+  app/controllers/resources_controller.rb:60:in `destroy'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (14.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.2ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 14ms (Views: 12.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:13 +0800
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 12ms (Views: 10.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:11:39 +0800
+
+
+Started POST "/projects/1/resources" for 127.0.0.1 at 2013-07-12 23:11:48 +0800
+Processing by ResourcesController#create as JS
+  Parameters: {"utf8"=>"✓", "resource"=>{"name"=>"User", "description"=>"The users."}, "commit"=>"Create Resource", "project_id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "resources" ("created_at", "description", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 12 Jul 2013 15:11:48 UTC +00:00], ["description", "The users."], ["name", "User"], ["project_id", 1], ["updated_at", Fri, 12 Jul 2013 15:11:48 UTC +00:00]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 23]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (3.6ms)
+  Rendered resources/create.js.erb (4.7ms)
+Completed 200 OK in 12ms (Views: 6.6ms | ActiveRecord: 2.2ms)
+
+
+Started DELETE "/projects/1/resources/23" for 127.0.0.1 at 2013-07-12 23:11:49 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"23"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mResource Load (0.1ms)[0m  [1mSELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "23"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 23]]
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "resources" WHERE "resources"."id" = ?  [["id", 23]]
+  [1m[36m (5.4ms)[0m  [1mcommit transaction[0m
+  Rendered resources/destroy.js.erb (1.2ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionView::Template::Error (no implicit conversion of Fixnum into String):
+    1: $("div#<%= 'resource_' + @resource.id %>").fadeOut();
+  app/views/resources/destroy.js.erb:1:in `+'
+  app/views/resources/destroy.js.erb:1:in `_app_views_resources_destroy_js_erb__1883061587664425832_70158518027340'
+  app/controllers/resources_controller.rb:60:in `destroy'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (14.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mResource Load (0.1ms)[0m  [1mSELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?[0m  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 13ms (Views: 10.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:13:45 +0800
+
+
+Started POST "/projects/1/resources" for 127.0.0.1 at 2013-07-12 23:13:53 +0800
+Processing by ResourcesController#create as JS
+  Parameters: {"utf8"=>"✓", "resource"=>{"name"=>"User", "description"=>"The users."}, "commit"=>"Create Resource", "project_id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "resources" ("created_at", "description", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 12 Jul 2013 15:13:53 UTC +00:00], ["description", "The users."], ["name", "User"], ["project_id", 1], ["updated_at", Fri, 12 Jul 2013 15:13:53 UTC +00:00]]
+  [1m[36m (5.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mEndpoint Load (0.2ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 24]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (48.0ms)
+  Rendered resources/create.js.erb (49.2ms)
+Completed 200 OK in 61ms (Views: 50.8ms | ActiveRecord: 6.3ms)
+
+
+Started DELETE "/projects/1/resources/24" for 127.0.0.1 at 2013-07-12 23:13:54 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"24"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1  [["project_id", 1], ["id", "24"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 24]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "resources" WHERE "resources"."id" = ?[0m  [["id", 24]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  Rendered resources/destroy.js.erb (0.3ms)
+Completed 200 OK in 8ms (Views: 2.1ms | ActiveRecord: 2.2ms)
+
+
+Started DELETE "/projects/1/resources/24" for 127.0.0.1 at 2013-07-12 23:13:57 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"24"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1  [["project_id", 1], ["id", "24"]]
+Completed 404 Not Found in 2ms
+
+ActiveRecord::RecordNotFound (Couldn't find Resource with id=24 [WHERE "resources"."project_id" = ?]):
+  app/controllers/resources_controller.rb:74:in `set_resource'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 13ms (Views: 10.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:14:51 +0800
+
+
+Started POST "/projects/1/resources" for 127.0.0.1 at 2013-07-12 23:14:59 +0800
+Processing by ResourcesController#create as JS
+  Parameters: {"utf8"=>"✓", "resource"=>{"name"=>"User", "description"=>"The users."}, "commit"=>"Create Resource", "project_id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "resources" ("created_at", "description", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 12 Jul 2013 15:14:59 UTC +00:00], ["description", "The users."], ["name", "User"], ["project_id", 1], ["updated_at", Fri, 12 Jul 2013 15:14:59 UTC +00:00]]
+  [1m[35m (5.6ms)[0m  commit transaction
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 25]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (4.5ms)
+  Rendered resources/create.js.erb (5.7ms)
+Completed 200 OK in 18ms (Views: 7.3ms | ActiveRecord: 6.3ms)
+
+
+Started DELETE "/projects/1/resources/25" for 127.0.0.1 at 2013-07-12 23:15:01 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"25"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mResource Load (0.1ms)[0m  [1mSELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "25"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 25]]
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "resources" WHERE "resources"."id" = ?  [["id", 25]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  Rendered resources/destroy.js.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 1.6ms | ActiveRecord: 2.1ms)
+
+
+Started DELETE "/projects/1/resources/25" for 127.0.0.1 at 2013-07-12 23:15:09 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"25"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mResource Load (0.1ms)[0m  [1mSELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "25"]]
+Completed 404 Not Found in 2ms
+
+ActiveRecord::RecordNotFound (Couldn't find Resource with id=25 [WHERE "resources"."project_id" = ?]):
+  app/controllers/resources_controller.rb:74:in `set_resource'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:15:38 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mResource Load (0.1ms)[0m  [1mSELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?[0m  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 12ms (Views: 10.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:15:39 +0800
+
+
+Started POST "/projects/1/resources" for 127.0.0.1 at 2013-07-12 23:15:45 +0800
+Processing by ResourcesController#create as JS
+  Parameters: {"utf8"=>"✓", "resource"=>{"name"=>"User", "description"=>"The users."}, "commit"=>"Create Resource", "project_id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "resources" ("created_at", "description", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 12 Jul 2013 15:15:45 UTC +00:00], ["description", "The users."], ["name", "User"], ["project_id", 1], ["updated_at", Fri, 12 Jul 2013 15:15:45 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 26]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (3.4ms)
+  Rendered resources/create.js.erb (4.3ms)
+Completed 200 OK in 11ms (Views: 6.0ms | ActiveRecord: 1.5ms)
+
+
+Started DELETE "/projects/1/resources/26" for 127.0.0.1 at 2013-07-12 23:15:46 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"26"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1  [["project_id", 1], ["id", "26"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 26]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "resources" WHERE "resources"."id" = ?[0m  [["id", 26]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  Rendered resources/destroy.js.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 1.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.1ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered projects/show.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 47ms (Views: 45.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:16:06 +0800
+
+
+Started POST "/projects/1/resources" for 127.0.0.1 at 2013-07-12 23:16:11 +0800
+Processing by ResourcesController#create as JS
+  Parameters: {"utf8"=>"✓", "resource"=>{"name"=>"User", "description"=>"The users."}, "commit"=>"Create Resource", "project_id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "resources" ("created_at", "description", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 12 Jul 2013 15:16:11 UTC +00:00], ["description", "The users."], ["name", "User"], ["project_id", 1], ["updated_at", Fri, 12 Jul 2013 15:16:11 UTC +00:00]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 27]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (3.7ms)
+  Rendered resources/create.js.erb (4.8ms)
+Completed 200 OK in 12ms (Views: 6.4ms | ActiveRecord: 2.2ms)
+
+
+Started DELETE "/projects/1/resources/27" for 127.0.0.1 at 2013-07-12 23:16:15 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"27"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mResource Load (0.1ms)[0m  [1mSELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "27"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 27]]
+  [1m[35mSQL (0.6ms)[0m  DELETE FROM "resources" WHERE "resources"."id" = ?  [["id", 27]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  Rendered resources/destroy.js.erb (0.4ms)
+Completed 200 OK in 7ms (Views: 2.0ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/projects/1/resources" for 127.0.0.1 at 2013-07-12 23:16:36 +0800
+Processing by ResourcesController#create as JS
+  Parameters: {"utf8"=>"✓", "resource"=>{"name"=>"User", "description"=>"The users."}, "commit"=>"Create Resource", "project_id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "resources" ("created_at", "description", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 12 Jul 2013 15:16:36 UTC +00:00], ["description", "The users."], ["name", "User"], ["project_id", 1], ["updated_at", Fri, 12 Jul 2013 15:16:36 UTC +00:00]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?  [["resource_id", 28]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (3.9ms)
+  Rendered resources/create.js.erb (5.1ms)
+Completed 200 OK in 13ms (Views: 6.8ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/projects/1/endpoints" for 127.0.0.1 at 2013-07-12 23:16:50 +0800
+Processing by EndpointsController#create as JS
+  Parameters: {"utf8"=>"✓", "endpoint"=>{"method_type"=>"GET", "url"=>"users/", "description"=>"Get all users.", "resource_id"=>"28"}, "commit"=>"Create Endpoint", "project_id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "endpoints" ("created_at", "description", "method_type", "project_id", "resource_id", "updated_at", "url") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Fri, 12 Jul 2013 15:16:50 UTC +00:00], ["description", "Get all users."], ["method_type", "GET"], ["project_id", 1], ["resource_id", 28], ["updated_at", Fri, 12 Jul 2013 15:16:50 UTC +00:00], ["url", "users/"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  Rendered endpoints/_endpoint.html.erb (0.6ms)
+  Rendered endpoints/create.js.erb (1.4ms)
+Completed 200 OK in 8ms (Views: 3.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:17:53 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.2ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 28]]
+  Rendered endpoints/_endpoint.html.erb (0.9ms)
+  Rendered resources/_resource.html.erb (7.0ms)
+  Rendered projects/show.html.erb within layouts/application (75.1ms)
+Completed 200 OK in 85ms (Views: 83.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:17:54 +0800
+
+
+Started DELETE "/projects/1/endpoints/14" for 127.0.0.1 at 2013-07-12 23:17:56 +0800
+Processing by EndpointsController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"14"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "14"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mParameter Load (0.1ms)[0m  [1mSELECT "parameters".* FROM "parameters" WHERE "parameters"."endpoint_id" = ?[0m  [["endpoint_id", 14]]
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "endpoints" WHERE "endpoints"."id" = ?  [["id", 14]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  Rendered endpoints/destroy.js.erb (0.7ms)
+Completed 200 OK in 9ms (Views: 3.6ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/projects/1/endpoints" for 127.0.0.1 at 2013-07-12 23:18:07 +0800
+Processing by EndpointsController#create as JS
+  Parameters: {"utf8"=>"✓", "endpoint"=>{"method_type"=>"GET", "url"=>"users/", "description"=>"Get all users.", "resource_id"=>"28"}, "commit"=>"Create Endpoint", "project_id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "endpoints" ("created_at", "description", "method_type", "project_id", "resource_id", "updated_at", "url") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", Fri, 12 Jul 2013 15:18:07 UTC +00:00], ["description", "Get all users."], ["method_type", "GET"], ["project_id", 1], ["resource_id", 28], ["updated_at", Fri, 12 Jul 2013 15:18:07 UTC +00:00], ["url", "users/"]]
+  [1m[36m (5.4ms)[0m  [1mcommit transaction[0m
+  Rendered endpoints/_endpoint.html.erb (0.6ms)
+  Rendered endpoints/create.js.erb (1.5ms)
+Completed 200 OK in 13ms (Views: 3.4ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/projects/1/endpoints/15" for 127.0.0.1 at 2013-07-12 23:18:08 +0800
+Processing by EndpointsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"15"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "15"]]
+ERROR: compiling _app_views_endpoints_show_html_erb__161561253344695926_70158525252460 RAISED /Users/Amy/Dropbox/workspace/resty/app/views/endpoints/show.html.erb:40: syntax error, unexpected keyword_ensure, expecting end-of-input
+Function body:           def _app_views_endpoints_show_html_erb__161561253344695926_70158525252460(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "endpoints/show";_old_output_buffer = @output_buffer;;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.safe_append='<h1>';@output_buffer.append=(@endpoint.method_type + ' ' + @endpoint.url);@output_buffer.safe_append='</h1>
+
+<p>
+  	<strong>Description</strong><br>
+  	';@output_buffer.append=( @endpoint.description );@output_buffer.safe_append='
+</p>
+
+<p>
+  	<strong>Detail</strong><br>
+  	';@output_buffer.append=( @endpoint.detail );@output_buffer.safe_append='
+</p>
+
+<p>
+	<strong>Parameters</strong><br>
+		<table id="parameters">
+	  		';@output_buffer.append=( render @endpoint.parameters );@output_buffer.safe_append='
+	  	</table>
+
+	  	<div class="new-form-container hidden">
+		      ';@output_buffer.append=  form_for([@project, @endpoint, Parameter.new], remote:true) do |f| @output_buffer.safe_append='
+		        <div class="field">
+		            ';@output_buffer.append=( f.text_field :name );@output_buffer.safe_append='
+		            ';@output_buffer.append=( f.text_field :example_value );@output_buffer.safe_append='
+		            ';@output_buffer.append=( f.text_field :description );@output_buffer.safe_append='
+		        </div>
+		        <div class="actions">
+		        	';@output_buffer.append=( f.submit );@output_buffer.safe_append='
+		        </div>
+';		       end 
+@output_buffer.safe_append='		    <div class="actions" style="float:left;">
+		    	';@output_buffer.append=( f.submit );@output_buffer.safe_append='
+		    </div>
+';		   end 
+@output_buffer.safe_append='		  <button class="cancel-creation">Cancel</button>
+		</div>
+
+		<button class="new-row-btn">New Parameter</button>
+
+</p>';@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:299:in `module_eval'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:299:in `compile'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:248:in `block in compile!'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:236:in `synchronize'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:236:in `compile!'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:142:in `block in render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:161:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:141:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:49:in `block (2 levels) in render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `block in instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:48:in `block in render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:56:in `render_with_layout'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:47:in `render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:17:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/renderer.rb:42:in `render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/renderer.rb:23:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:127:in `_render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/streaming.rb:219:in `_render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:120:in `render_to_body'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:97:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rendering.rb:16:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/benchmark.rb:296:in `realtime'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/core_ext/benchmark.rb:12:in `ms'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/base.rb:189:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:442:in `_run__1738868931815319947__process_action__callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:80:in `run_callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `block in instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/base.rb:136:in `process'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:44:in `process'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal.rb:195:in `dispatch'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal.rb:231:in `block in action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:80:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:48:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/journey/router.rb:71:in `block in call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/journey/router.rb:59:in `each'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/journey/router.rb:59:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:654:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/etag.rb:23:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/conditionalget.rb:25:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/head.rb:11:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/flash.rb:241:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/session/abstract/id.rb:225:in `context'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/session/abstract/id.rb:220:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/cookies.rb:486:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/query_cache.rb:36:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/migration.rb:366:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:392:in `_run__275836665745793782__call__callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:80:in `run_callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/reloader.rb:64:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/rack/logger.rb:38:in `call_app'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/rack/logger.rb:21:in `block in call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/tagged_logging.rb:67:in `block in tagged'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/tagged_logging.rb:25:in `tagged'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/tagged_logging.rb:67:in `tagged'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/rack/logger.rb:21:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/methodoverride.rb:21:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/runtime.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/lock.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/static.rb:64:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/engine.rb:511:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/application.rb:96:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/lock.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/content_length.rb:14:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/handler/webrick.rb:60:in `service'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+  Rendered endpoints/show.html.erb within layouts/application (5.5ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (/Users/Amy/Dropbox/workspace/resty/app/views/endpoints/show.html.erb:40: syntax error, unexpected keyword_ensure, expecting end-of-input):
+    37: 		<button class="new-row-btn">New Parameter</button>
+    38: 
+    39: </p>
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:299:in `module_eval'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:299:in `compile'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:248:in `block in compile!'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:236:in `synchronize'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:236:in `compile!'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:142:in `block in render'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:161:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:141:in `render'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:49:in `block (2 levels) in render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:48:in `block in render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:56:in `render_with_layout'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:47:in `render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:17:in `render'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:127:in `_render_template'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:120:in `render_to_body'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:97:in `render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.0.0.rc1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/benchmark.rb:296:in `realtime'
+  activesupport (4.0.0.rc1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.0.0.rc1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.0.0.rc1) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.0.0.rc1) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:442:in `_run__1738868931815319947__process_action__callbacks'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0.rc1) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+  activerecord (4.0.0.rc1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.0.0.rc1) lib/abstract_controller/base.rb:136:in `process'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:44:in `process'
+  actionpack (4.0.0.rc1) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.0.0.rc1) lib/action_controller/metal.rb:231:in `block in action'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:80:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:48:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.0.0.rc1) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:654:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.0.0.rc1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.0.0.rc1) lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+  activerecord (4.0.0.rc1) lib/active_record/migration.rb:366:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:392:in `_run__275836665745793782__call__callbacks'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0.rc1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0.rc1) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0.rc1) lib/rails/application.rb:96:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.5ms)
+
+
+Started GET "/projects/1/endpoints/15" for 127.0.0.1 at 2013-07-12 23:18:08 +0800
+Processing by EndpointsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"15"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "15"]]
+ERROR: compiling _app_views_endpoints_show_html_erb__161561253344695926_70158534999660 RAISED /Users/Amy/Dropbox/workspace/resty/app/views/endpoints/show.html.erb:40: syntax error, unexpected keyword_ensure, expecting end-of-input
+Function body:           def _app_views_endpoints_show_html_erb__161561253344695926_70158534999660(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "endpoints/show";_old_output_buffer = @output_buffer;;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.safe_append='<h1>';@output_buffer.append=(@endpoint.method_type + ' ' + @endpoint.url);@output_buffer.safe_append='</h1>
+
+<p>
+  	<strong>Description</strong><br>
+  	';@output_buffer.append=( @endpoint.description );@output_buffer.safe_append='
+</p>
+
+<p>
+  	<strong>Detail</strong><br>
+  	';@output_buffer.append=( @endpoint.detail );@output_buffer.safe_append='
+</p>
+
+<p>
+	<strong>Parameters</strong><br>
+		<table id="parameters">
+	  		';@output_buffer.append=( render @endpoint.parameters );@output_buffer.safe_append='
+	  	</table>
+
+	  	<div class="new-form-container hidden">
+		      ';@output_buffer.append=  form_for([@project, @endpoint, Parameter.new], remote:true) do |f| @output_buffer.safe_append='
+		        <div class="field">
+		            ';@output_buffer.append=( f.text_field :name );@output_buffer.safe_append='
+		            ';@output_buffer.append=( f.text_field :example_value );@output_buffer.safe_append='
+		            ';@output_buffer.append=( f.text_field :description );@output_buffer.safe_append='
+		        </div>
+		        <div class="actions">
+		        	';@output_buffer.append=( f.submit );@output_buffer.safe_append='
+		        </div>
+';		       end 
+@output_buffer.safe_append='		    <div class="actions" style="float:left;">
+		    	';@output_buffer.append=( f.submit );@output_buffer.safe_append='
+		    </div>
+';		   end 
+@output_buffer.safe_append='		  <button class="cancel-creation">Cancel</button>
+		</div>
+
+		<button class="new-row-btn">New Parameter</button>
+
+</p>';@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:299:in `module_eval'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:299:in `compile'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:248:in `block in compile!'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:236:in `synchronize'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:236:in `compile!'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:142:in `block in render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:161:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:141:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:49:in `block (2 levels) in render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `block in instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:48:in `block in render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:56:in `render_with_layout'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:47:in `render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:17:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/renderer.rb:42:in `render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/renderer.rb:23:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:127:in `_render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/streaming.rb:219:in `_render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:120:in `render_to_body'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:97:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rendering.rb:16:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/benchmark.rb:296:in `realtime'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/core_ext/benchmark.rb:12:in `ms'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/base.rb:189:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:442:in `_run__1738868931815319947__process_action__callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:80:in `run_callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `block in instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/base.rb:136:in `process'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:44:in `process'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal.rb:195:in `dispatch'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal.rb:231:in `block in action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:80:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:48:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/journey/router.rb:71:in `block in call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/journey/router.rb:59:in `each'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/journey/router.rb:59:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:654:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/etag.rb:23:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/conditionalget.rb:25:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/head.rb:11:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/flash.rb:241:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/session/abstract/id.rb:225:in `context'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/session/abstract/id.rb:220:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/cookies.rb:486:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/query_cache.rb:36:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/migration.rb:366:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:392:in `_run__275836665745793782__call__callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:80:in `run_callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/reloader.rb:64:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/rack/logger.rb:38:in `call_app'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/rack/logger.rb:21:in `block in call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/tagged_logging.rb:67:in `block in tagged'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/tagged_logging.rb:25:in `tagged'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/tagged_logging.rb:67:in `tagged'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/rack/logger.rb:21:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/methodoverride.rb:21:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/runtime.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/lock.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/static.rb:64:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/engine.rb:511:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/application.rb:96:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/lock.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/content_length.rb:14:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/handler/webrick.rb:60:in `service'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+  Rendered endpoints/show.html.erb within layouts/application (3.8ms)
+Completed 500 Internal Server Error in 9ms
+
+ActionView::Template::Error (/Users/Amy/Dropbox/workspace/resty/app/views/endpoints/show.html.erb:40: syntax error, unexpected keyword_ensure, expecting end-of-input):
+    37: 		<button class="new-row-btn">New Parameter</button>
+    38: 
+    39: </p>
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:299:in `module_eval'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:299:in `compile'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:248:in `block in compile!'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:236:in `synchronize'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:236:in `compile!'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:142:in `block in render'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:161:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:141:in `render'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:49:in `block (2 levels) in render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:48:in `block in render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:56:in `render_with_layout'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:47:in `render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:17:in `render'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:127:in `_render_template'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:120:in `render_to_body'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:97:in `render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.0.0.rc1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/benchmark.rb:296:in `realtime'
+  activesupport (4.0.0.rc1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.0.0.rc1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.0.0.rc1) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.0.0.rc1) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:442:in `_run__1738868931815319947__process_action__callbacks'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0.rc1) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+  activerecord (4.0.0.rc1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.0.0.rc1) lib/abstract_controller/base.rb:136:in `process'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:44:in `process'
+  actionpack (4.0.0.rc1) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.0.0.rc1) lib/action_controller/metal.rb:231:in `block in action'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:80:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:48:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.0.0.rc1) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:654:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.0.0.rc1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.0.0.rc1) lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+  activerecord (4.0.0.rc1) lib/active_record/migration.rb:366:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:392:in `_run__275836665745793782__call__callbacks'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0.rc1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0.rc1) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0.rc1) lib/rails/application.rb:96:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (15.9ms)
+
+
+Started GET "/projects/1/endpoints/15" for 127.0.0.1 at 2013-07-12 23:19:42 +0800
+Processing by EndpointsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"15"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "15"]]
+ERROR: compiling _app_views_endpoints_show_html_erb__161561253344695926_70158555056380 RAISED /Users/Amy/Dropbox/workspace/resty/app/views/endpoints/show.html.erb:41: syntax error, unexpected keyword_ensure, expecting end-of-input
+Function body:           def _app_views_endpoints_show_html_erb__161561253344695926_70158555056380(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "endpoints/show";_old_output_buffer = @output_buffer;;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.safe_append='<h1>';@output_buffer.append=(@endpoint.method_type + ' ' + @endpoint.url);@output_buffer.safe_append='</h1>
+
+<p>
+  	<strong>Description</strong><br>
+  	';@output_buffer.append=( @endpoint.description );@output_buffer.safe_append='
+</p>
+
+<p>
+  	<strong>Detail</strong><br>
+  	';@output_buffer.append=( @endpoint.detail );@output_buffer.safe_append='
+</p>
+
+<p>
+	<strong>Parameters</strong><br>
+		<table id="parameters">
+	  		';@output_buffer.append=( render @endpoint.parameters );@output_buffer.safe_append='
+	  	</table>
+
+	  	<div class="new-form-container hidden">
+		      ';@output_buffer.append=  form_for([@project, @endpoint, Parameter.new], remote:true) do |f| @output_buffer.safe_append='
+		        <div class="field">
+		            ';@output_buffer.append=( f.text_field :name );@output_buffer.safe_append='
+		            ';@output_buffer.append=( f.text_field :example_value );@output_buffer.safe_append='
+		            ';@output_buffer.append=( f.text_field :description );@output_buffer.safe_append='
+		        </div>
+		        <div class="actions">
+		        	';@output_buffer.append=( f.submit );@output_buffer.safe_append='
+		        </div>
+';		       end 
+@output_buffer.safe_append='		    <div class="actions" style="float:left;">
+		    	';@output_buffer.append=( f.submit );@output_buffer.safe_append='
+		    </div>
+';		   end 
+@output_buffer.safe_append='		  <button class="cancel-creation">Cancel</button>
+		</div>
+
+		<button class="new-row-btn">New Parameter</button>
+
+</p>
+';@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:299:in `module_eval'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:299:in `compile'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:248:in `block in compile!'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:236:in `synchronize'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:236:in `compile!'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:142:in `block in render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:161:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/template.rb:141:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:49:in `block (2 levels) in render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `block in instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:48:in `block in render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:56:in `render_with_layout'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:47:in `render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/template_renderer.rb:17:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/renderer.rb:42:in `render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_view/renderer/renderer.rb:23:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:127:in `_render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/streaming.rb:219:in `_render_template'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:120:in `render_to_body'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:97:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rendering.rb:16:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/benchmark.rb:296:in `realtime'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/core_ext/benchmark.rb:12:in `ms'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/base.rb:189:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:442:in `_run__1738868931815319947__process_action__callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:80:in `run_callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `block in instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/notifications.rb:159:in `instrument'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/base.rb:136:in `process'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/abstract_controller/rendering.rb:44:in `process'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal.rb:195:in `dispatch'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_controller/metal.rb:231:in `block in action'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:80:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:48:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/journey/router.rb:71:in `block in call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/journey/router.rb:59:in `each'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/journey/router.rb:59:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/routing/route_set.rb:654:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/etag.rb:23:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/conditionalget.rb:25:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/head.rb:11:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/flash.rb:241:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/session/abstract/id.rb:225:in `context'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/session/abstract/id.rb:220:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/cookies.rb:486:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/query_cache.rb:36:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activerecord-4.0.0.rc1/lib/active_record/migration.rb:366:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:392:in `_run__275836665745793782__call__callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/callbacks.rb:80:in `run_callbacks'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/reloader.rb:64:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/rack/logger.rb:38:in `call_app'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/rack/logger.rb:21:in `block in call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/tagged_logging.rb:67:in `block in tagged'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/tagged_logging.rb:25:in `tagged'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/tagged_logging.rb:67:in `tagged'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/rack/logger.rb:21:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/methodoverride.rb:21:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/runtime.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/activesupport-4.0.0.rc1/lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/lock.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/static.rb:64:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/engine.rb:511:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0.rc1/lib/rails/application.rb:96:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/lock.rb:17:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/content_length.rb:14:in `call'
+/Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/rack-1.5.2/lib/rack/handler/webrick.rb:60:in `service'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+/Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+  Rendered endpoints/show.html.erb within layouts/application (4.8ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (/Users/Amy/Dropbox/workspace/resty/app/views/endpoints/show.html.erb:41: syntax error, unexpected keyword_ensure, expecting end-of-input):
+    38: 
+    39: </p>
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:299:in `module_eval'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:299:in `compile'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:248:in `block in compile!'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:236:in `synchronize'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:236:in `compile!'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:142:in `block in render'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:161:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_view/template.rb:141:in `render'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:49:in `block (2 levels) in render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:48:in `block in render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:56:in `render_with_layout'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:47:in `render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/template_renderer.rb:17:in `render'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionpack (4.0.0.rc1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:127:in `_render_template'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:120:in `render_to_body'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:97:in `render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.0.0.rc1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/benchmark.rb:296:in `realtime'
+  activesupport (4.0.0.rc1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.0.0.rc1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.0.0.rc1) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.0.0.rc1) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:442:in `_run__1738868931815319947__process_action__callbacks'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0.rc1) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0.rc1) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+  activerecord (4.0.0.rc1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.0.0.rc1) lib/abstract_controller/base.rb:136:in `process'
+  actionpack (4.0.0.rc1) lib/abstract_controller/rendering.rb:44:in `process'
+  actionpack (4.0.0.rc1) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.0.0.rc1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.0.0.rc1) lib/action_controller/metal.rb:231:in `block in action'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:80:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:48:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.0.0.rc1) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/routing/route_set.rb:654:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.0.0.rc1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.0.0.rc1) lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+  activerecord (4.0.0.rc1) lib/active_record/migration.rb:366:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:392:in `_run__275836665745793782__call__callbacks'
+  activesupport (4.0.0.rc1) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0.rc1) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0.rc1) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0.rc1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0.rc1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0.rc1) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0.rc1) lib/rails/application.rb:96:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/Amy/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.1ms)
+
+
+Started GET "/projects/1/endpoints/15" for 127.0.0.1 at 2013-07-12 23:21:07 +0800
+Processing by EndpointsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"15"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "15"]]
+  [1m[35mParameter Load (0.2ms)[0m  SELECT "parameters".* FROM "parameters" WHERE "parameters"."endpoint_id" = ?  [["endpoint_id", 15]]
+  Rendered collection (0.0ms)
+  Rendered endpoints/show.html.erb within layouts/application (61.6ms)
+Completed 500 Internal Server Error in 68ms
+
+ActionView::Template::Error (undefined local variable or method `f' for #<#<Class:0x007f9e1f803170>:0x007f9e1d33b0e0>):
+    28: 		        </div>
+    29: 		      <% end %>
+    30: 		    <div class="actions" style="float:left;">
+    31: 		    	<%= f.submit %>
+    32: 		    </div>
+    33: 		  <button class="cancel-creation">Cancel</button>
+    34: 		</div>
+  app/views/endpoints/show.html.erb:31:in `_app_views_endpoints_show_html_erb__161561253344695926_70158535741180'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.4ms)
+
+
+Started GET "/projects/1/endpoints/15" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+Processing by EndpointsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"15"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1  [["project_id", 1], ["id", "15"]]
+  [1m[36mParameter Load (0.1ms)[0m  [1mSELECT "parameters".* FROM "parameters" WHERE "parameters"."endpoint_id" = ?[0m  [["endpoint_id", 15]]
+  Rendered collection (0.0ms)
+  Rendered endpoints/show.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 14ms (Views: 11.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:21:33 +0800
+
+
+Started POST "/projects/1/endpoints/15/parameters" for 127.0.0.1 at 2013-07-12 23:22:02 +0800
+Processing by ParametersController#create as JS
+  Parameters: {"utf8"=>"✓", "parameter"=>{"name"=>"userName", "example_value"=>"123", "description"=>"User's name."}, "commit"=>"Create Parameter", "project_id"=>"1", "endpoint_id"=>"15"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "15"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "parameters" ("created_at", "description", "endpoint_id", "example_value", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Fri, 12 Jul 2013 15:22:02 UTC +00:00], ["description", "User's name."], ["endpoint_id", 15], ["example_value", "123"], ["name", "userName"], ["updated_at", Fri, 12 Jul 2013 15:22:02 UTC +00:00]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  Rendered parameters/_parameter.html.erb (0.3ms)
+  Rendered parameters/create.js.erb (2.0ms)
+Completed 200 OK in 13ms (Views: 4.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/projects/1/endpoints/14" for 127.0.0.1 at 2013-07-12 23:26:07 +0800
+Processing by EndpointsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"14"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1  [["project_id", 1], ["id", "14"]]
+Completed 404 Not Found in 3ms
+
+ActiveRecord::RecordNotFound (Couldn't find Endpoint with id=14 [WHERE "endpoints"."project_id" = ?]):
+  app/controllers/endpoints_controller.rb:75:in `set_endpoint'
+
+
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.1ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/Amy/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (23.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 23:26:21 +0800
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mResource Load (0.2ms)[0m  SELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ?  [["project_id", 1]]
+  [1m[36mEndpoint Load (0.2ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 28]]
+  Rendered endpoints/_endpoint.html.erb (0.6ms)
+  Rendered resources/_resource.html.erb (5.0ms)
+  Rendered projects/show.html.erb within layouts/application (13.3ms)
+Completed 200 OK in 62ms (Views: 59.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:26:22 +0800
+
+
+Started DELETE "/projects/1/resources/28" for 127.0.0.1 at 2013-07-12 23:26:23 +0800
+Processing by ResourcesController#destroy as JS
+  Parameters: {"project_id"=>"1", "id"=>"28"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mResource Load (0.1ms)[0m  [1mSELECT "resources".* FROM "resources" WHERE "resources"."project_id" = ? AND "resources"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "28"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 28]]
+  [1m[35mParameter Load (0.0ms)[0m  SELECT "parameters".* FROM "parameters" WHERE "parameters"."endpoint_id" = ?  [["endpoint_id", 15]]
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "parameters" WHERE "parameters"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "endpoints" WHERE "endpoints"."id" = ?  [["id", 15]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "resources" WHERE "resources"."id" = ?[0m  [["id", 28]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  Rendered resources/destroy.js.erb (0.4ms)
+Completed 200 OK in 10ms (Views: 2.4ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/projects/1/resources" for 127.0.0.1 at 2013-07-12 23:26:29 +0800
+Processing by ResourcesController#create as JS
+  Parameters: {"utf8"=>"✓", "resource"=>{"name"=>"User", "description"=>"The users."}, "commit"=>"Create Resource", "project_id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "resources" ("created_at", "description", "name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 12 Jul 2013 15:26:29 UTC +00:00], ["description", "The users."], ["name", "User"], ["project_id", 1], ["updated_at", Fri, 12 Jul 2013 15:26:29 UTC +00:00]]
+  [1m[35m (5.5ms)[0m  commit transaction
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."resource_id" = ?[0m  [["resource_id", 29]]
+  Rendered collection (0.0ms)
+  Rendered resources/_resource.html.erb (4.9ms)
+  Rendered resources/create.js.erb (6.1ms)
+Completed 200 OK in 18ms (Views: 7.8ms | ActiveRecord: 6.2ms)
+
+
+Started POST "/projects/1/endpoints" for 127.0.0.1 at 2013-07-12 23:26:42 +0800
+Processing by EndpointsController#create as JS
+  Parameters: {"utf8"=>"✓", "endpoint"=>{"method_type"=>"GET", "url"=>"users/", "description"=>"Get all users.", "resource_id"=>"29"}, "commit"=>"Create Endpoint", "project_id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "endpoints" ("created_at", "description", "method_type", "project_id", "resource_id", "updated_at", "url") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", Fri, 12 Jul 2013 15:26:42 UTC +00:00], ["description", "Get all users."], ["method_type", "GET"], ["project_id", 1], ["resource_id", 29], ["updated_at", Fri, 12 Jul 2013 15:26:42 UTC +00:00], ["url", "users/"]]
+  [1m[36m (5.5ms)[0m  [1mcommit transaction[0m
+  Rendered endpoints/_endpoint.html.erb (0.5ms)
+  Rendered endpoints/create.js.erb (1.4ms)
+Completed 200 OK in 13ms (Views: 3.3ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/projects/1/endpoints/16" for 127.0.0.1 at 2013-07-12 23:26:43 +0800
+Processing by EndpointsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"16"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "16"]]
+  [1m[35mParameter Load (0.1ms)[0m  SELECT "parameters".* FROM "parameters" WHERE "parameters"."endpoint_id" = ?  [["endpoint_id", 16]]
+  Rendered collection (0.0ms)
+  Rendered endpoints/show.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 17ms (Views: 14.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/projects/1/endpoints/16" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+Processing by EndpointsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"16"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mEndpoint Load (0.2ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1  [["project_id", 1], ["id", "16"]]
+  [1m[36mParameter Load (0.2ms)[0m  [1mSELECT "parameters".* FROM "parameters" WHERE "parameters"."endpoint_id" = ?[0m  [["endpoint_id", 16]]
+  Rendered collection (0.0ms)
+  Rendered endpoints/show.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 17ms (Views: 14.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/parameters.css?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/endpoints.css?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/resources.css?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/utilities.css?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/utilities.css" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/endpoints.js?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/resources.js?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/parameters.js?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 23:27:06 +0800
+
+
+Started GET "/projects/1/endpoints/16" for 127.0.0.1 at 2013-07-12 23:27:14 +0800
+Processing by EndpointsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"16"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "16"]]
+  [1m[35mParameter Load (0.2ms)[0m  SELECT "parameters".* FROM "parameters" WHERE "parameters"."endpoint_id" = ?  [["endpoint_id", 16]]
+  Rendered collection (0.0ms)
+  Rendered endpoints/show.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 18ms (Views: 14.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/projects/1/endpoints/16" for 127.0.0.1 at 2013-07-12 23:27:16 +0800
+Processing by EndpointsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"16"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mEndpoint Load (0.1ms)[0m  SELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1  [["project_id", 1], ["id", "16"]]
+  [1m[36mParameter Load (0.2ms)[0m  [1mSELECT "parameters".* FROM "parameters" WHERE "parameters"."endpoint_id" = ?[0m  [["endpoint_id", 16]]
+  Rendered collection (0.0ms)
+  Rendered endpoints/show.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 18ms (Views: 15.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/projects/1/endpoints/16/parameters" for 127.0.0.1 at 2013-07-12 23:27:40 +0800
+Processing by ParametersController#create as JS
+  Parameters: {"utf8"=>"✓", "parameter"=>{"name"=>"userName", "example_value"=>"Amy", "description"=>"User's name."}, "commit"=>"Create Parameter", "project_id"=>"1", "endpoint_id"=>"16"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mEndpoint Load (0.1ms)[0m  [1mSELECT "endpoints".* FROM "endpoints" WHERE "endpoints"."project_id" = ? AND "endpoints"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", "16"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "parameters" ("created_at", "description", "endpoint_id", "example_value", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Fri, 12 Jul 2013 15:27:40 UTC +00:00], ["description", "User's name."], ["endpoint_id", 16], ["example_value", "Amy"], ["name", "userName"], ["updated_at", Fri, 12 Jul 2013 15:27:40 UTC +00:00]]
+  [1m[35m (5.6ms)[0m  commit transaction
+  Rendered parameters/_parameter.html.erb (0.4ms)
+  Rendered parameters/create.js.erb (1.4ms)
+Completed 200 OK in 14ms (Views: 3.1ms | ActiveRecord: 6.4ms)

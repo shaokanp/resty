@@ -18,7 +18,7 @@
 
 	  	<div class="new-endpoint-container hidden">
 		    <div width="100%" height="50px">
-		      <%= form_for([@endpoint, Parameter.new], remote:true) do |f| %>
+		      <%= form_for([@project, @endpoint, Parameter.new], remote:true) do |f| %>
 		        <div class="field">
 		            <%= f.text_field :name %>
 		            <%= f.text_field :example_value %>

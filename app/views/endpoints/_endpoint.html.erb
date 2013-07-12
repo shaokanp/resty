@@ -1,5 +1,5 @@
 <tr id="<%= 'endpoint-' + endpoint.resource_id.to_s + '-' + endpoint.id.to_s %>" class="endpoint-row">
-	<td class="rest-url"><%= link_to endpoint.method_type + ' ' + endpoint.url, endpoint %></td>
+	<td class="rest-url"><%= link_to endpoint.method_type + ' ' + endpoint.url, [@project,endpoint] %></td>
 	<td class="description"><%= endpoint.description %></td>
-	<td class="edit-td v-hidden"><%= link_to 'Delete', endpoint, method: :delete, remote: true %></td>
+	<td class="edit-td v-hidden"><%= link_to 'Delete', [@project,endpoint], method: :delete, remote: true %></td>
 </tr>

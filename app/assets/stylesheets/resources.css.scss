@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "utilities.css";
 
+$url-color: #3CB4FF;
+$url-hover-color: #3264FF;
+
 caption.resource-title{
 	div:first-child{
 		float:left;
@@ -18,6 +21,21 @@ thead tr th:first-child{
 
 thead tr th:last-child{
 	width: 65%;
+}
+
+.rest-url{
+	a{
+		color: $url-color;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+			background-color: transparent;
+			color: $url-hover-color;
+		}
+		&:visited{
+			color: $url-color;
+		}
+	}
 }
 
 .type-input-field{

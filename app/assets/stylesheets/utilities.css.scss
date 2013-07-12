@@ -1,11 +1,10 @@
-$url-color: #3CB4FF;
-$url-hover-color: 3C78FF;
+
 $th-color: #787878;
 $description-color:  #787878;
 $tr-border-color: #C8C8C8;
 $tr-hover-background-color: #E4E4E4;
-
-
+$button-background-color: #D4D4D4;
+$button-text-color: #787878;
 
 div#global-container{
 	margin: 0 auto 0 auto;
@@ -54,23 +53,26 @@ caption{
 	margin-right:10px;
 }
 
-.rest-url{
-	a{
-		color: $url-color;
-		text-decoration: none;
-		&:hover {
-			text-decoration: underline;
-			background-color: transparent;
-			color: $url-hover-color;
-		}
-		&:visited{
-			color: $url-color;
-		}
-	}
-}
-
 .description{
 	color: $description-color;
+}
+
+button{
+	height:25px;
+	min-width: 50px;
+	color:$button-text-color;
+	background-image: none;
+	background-color: $button-background-color;
+	border: none;
+}
+
+div.actions input{
+	height:25px;
+	min-width: 50px;
+	color:$button-text-color;
+	background-image: none;
+	background-color: $button-background-color;
+	border: none;
 }
 
 .hidden{

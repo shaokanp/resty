@@ -3,9 +3,11 @@ Resty::Application.routes.draw do
   root :to => 'resources#index'
 
   resources :resources do
-    resources :endpoints do
-      resources :parameters
-    end
+  end
+
+
+  resources :endpoints do
+    resources :parameters
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

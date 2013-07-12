@@ -3,10 +3,10 @@
 <% else %>
   $('#resource_' + <%= @endpoint.resource_id %> + ' .endpoints').append("<%= escape_javascript(render @endpoint) %>");
   $('tr.endpoint-row').mouseover(function(event){
-		$(this).children('.edit-td').removeClass('v-hidden');
+		$(this).find('div.edit-btn-div').removeClass('v-hidden');
 	});
 
 	$('tr.endpoint-row').mouseleave(function(event){
-		$(this).children('.edit-td').addClass('v-hidden');
+		$(this).find('div.edit-btn-div').addClass('v-hidden');
 	});
 <% end %>

@@ -5,11 +5,11 @@ $(document).ready(function(){
 		$(this).hide();
 	});
 
-	$('button.submit-endpoint').click(function(event){
-		
+	$('tr.endpoint-row').mouseover(function(event){
+		$(this).children('.edit-td').removeClass('v-hidden');
 	});
 
-	$('button.cancel-new-endpoint').click(function(event){
-		
+	$('tr.endpoint-row').mouseleave(function(event){
+		$(this).children('.edit-td').addClass('v-hidden');
 	});
 });

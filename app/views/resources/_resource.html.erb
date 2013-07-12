@@ -27,9 +27,9 @@
 	<div class="new-form-container hidden">
 	      <%= form_for([@project,Endpoint.new], remote:true) do |f| %>
 	        <div class="field">
-	            <%= f.text_field :method_type %>
-	            <%= f.text_field :url %>
-	            <%= f.text_field :description %>
+	            <%= f.text_field :method_type, placeholder: "Method" %>
+	            <%= f.text_field :url, placeholder: "Url" %>
+	            <%= f.text_field :description, placeholder: "Description" %>
 	            <%= f.hidden_field :resource_id, :value => resource.id %>
 	        </div>
 	        <div class="actions">

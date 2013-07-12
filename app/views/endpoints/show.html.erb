@@ -22,9 +22,9 @@
 		  	<div class="new-form-container hidden">
 			      <%= form_for([@project, @endpoint, Parameter.new], remote:true) do |f| %>
 			        <div class="field">
-			            <%= f.text_field :name %>
-			            <%= f.text_field :example_value %>
-			            <%= f.text_field :description %>
+			            <%= f.text_field :name, placeholder: "Name" %>
+			            <%= f.text_field :example_value, placeholder: "Example Values" %>
+			            <%= f.text_field :description, placeholder: "Description" %>
 			        </div>
 			        <div class="actions">
 			        	<%= f.submit %>

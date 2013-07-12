@@ -1,6 +1,6 @@
 Resty::Application.routes.draw do
   
-  root :to => 'projects#show#', :id => '1'
+  root :to => 'home#show'
 
   resources :projects do
 

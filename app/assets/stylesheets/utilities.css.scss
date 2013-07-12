@@ -2,7 +2,7 @@ $url-color: #3CB4FF;
 $th-color: #787878;
 $description-color:  #787878;
 $tr-border-color: #C8C8C8;
-$tr-hover-background-color: #DFDFDF;
+$tr-hover-background-color: #E4E4E4;
 
 caption{
 	text-align: left;
@@ -12,11 +12,11 @@ caption{
 table{
 	width: 100%;
 	border-collapse: collapse;
-	thead:first-child{
-		width: 50%;
+	thead tr th:first-child{
+		width: 35%;
 	}
-	thead:last-child{
-		width: 50%;
+	thead tr th:last-child{
+		width: 65%;
 	}
 }
 
@@ -35,6 +35,11 @@ tr{
 
 tr.endpoint-row:hover{
 	background-color: $tr-hover-background-color;
+}
+.edit-btn-div{
+	width:40px;	
+	float:right;
+	margin-right:10px;
 }
 
 .rest-url{

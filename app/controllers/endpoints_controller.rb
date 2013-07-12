@@ -1,11 +1,10 @@
 class EndpointsController < ApplicationController
-  before_action :set_resource
   before_action :set_endpoint, only: [:show, :edit, :update, :destroy]
 
   # GET /endpoints
   # GET /endpoints.json
   def index
-    @endpoints = @resource.endpoints
+    @endpoints = Endpoint.all
   end
 
   # GET /endpoints/1
@@ -15,7 +14,7 @@ class EndpointsController < ApplicationController
 
   # GET /endpoints/new
   def new
-    @endpoint = @resource.endpoints.new
+    @endpoint = Endpoint.new
   end
 
   # GET /endpoints/1/edit
@@ -25,12 +24,12 @@ class EndpointsController < ApplicationController
   # POST /endpoints
   # POST /endpoints.json
   def create
-    @endpoint = @resource.endpoints.new(endpoint_params)
+    @endpoint = Endpoint.new(endpoint_params)
 
     respond_to do |format|
       if @endpoint.save
-        format.html { redirect_to [@resource,@endpoint], notice: 'Endpoint was successfully created.' }
-        format.json { render action: 'show', status: :created, location: [@resource,@endpoint] }
+        format.html { redirect_to @endpoint, notice: 'Endpoint was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @endpoint }
       else
         format.html { render action: 'new' }
         format.json { render json: @endpoint.errors, status: :unprocessable_entity }
@@ -67,13 +66,10 @@ class EndpointsController < ApplicationController
 
   private
 
-    def set_resource
-      @resource = Resource.find(params[:resource_id])
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_endpoint
-      @endpoint = @resource.endpoints.find(params[:id])
+      @endpoint = Endpoint.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

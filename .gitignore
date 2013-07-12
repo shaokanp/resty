@@ -17,3 +17,10 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .project
+*.sqlite3
+
+db/development.sqlite3
+
+tmp/cache/assets/development/sprockets/13fe41fee1fe35b49d145bcc06610705
+
+db/development.sqlite3

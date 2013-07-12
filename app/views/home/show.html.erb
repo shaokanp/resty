@@ -1,0 +1,18 @@
+<h1>Resty</h1>
+
+<h3> Create a new project </h3>
+
+<%= form_for(Project.new, remote:true) do |f| %>
+	<div class="field">
+	    <%= f.text_field :name, placeholder: "Name" %>
+	    <%= f.text_field :description, placeholder: "Description" %>
+	</div>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
+
+<h3> Existing projects </h3>
+<div id="projects">
+	<%= render @projects %>
+</div>

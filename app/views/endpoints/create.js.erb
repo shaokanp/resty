@@ -2,11 +2,4 @@
   $('input#endpoint_name').effect('highlight', { color: 'red' });
 <% else %>
   $('#resource_' + <%= @endpoint.resource_id %> + ' .endpoints').append("<%= escape_javascript(render @endpoint) %>");
-  $('tr.endpoint-row').mouseover(function(event){
-		$(this).find('div.edit-btn-div').removeClass('v-hidden');
-	});
-
-	$('tr.endpoint-row').mouseleave(function(event){
-		$(this).find('div.edit-btn-div').addClass('v-hidden');
-	});
 <% end %>

@@ -1,15 +1,28 @@
 
 $(document).ready(function(){
-	$('button.new-endpoint-btn').click(function(event){
-		$(this).siblings('div.new-endpoint-container').removeClass('hidden');
+	$(document).delegate('button.new-row-btn', 'click', null,function(event){
+		$(this).siblings('div.new-form-container').removeClass('hidden');
 		$(this).hide();
 	});
 
-	$('tr.endpoint-row').mouseover(function(event){
+	$(document).delegate('tr.endpoint-row', 'mouseover', function(event){
 		$(this).find('div.edit-btn-div').removeClass('v-hidden');
 	});
 
-	$('tr.endpoint-row').mouseleave(function(event){
+	$(document).delegate('tr.endpoint-row', 'mouseleave', function(event){
+		$(this).find('div.edit-btn-div').addClass('v-hidden');
+	});
+
+	$(document).delegate('button.cancel-creation', 'click', function(event){
+		$(this).parents('div.new-form-container').addClass('hidden');
+		$(this).parents('div.new-form-container').siblings('button.new-row-btn').show();
+	});
+
+	$(document).delegate('caption.resource-title', 'mouseover', function(event){
+		$(this).find('div.edit-btn-div').removeClass('v-hidden');
+	});
+
+	$(document).delegate('caption.resource-title', 'mouseleave', function(event){
 		$(this).find('div.edit-btn-div').addClass('v-hidden');
 	});
 });

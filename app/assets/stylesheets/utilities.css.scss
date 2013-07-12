@@ -1,4 +1,5 @@
 $url-color: #3CB4FF;
+$url-hover-color: 3C78FF;
 $th-color: #787878;
 $description-color:  #787878;
 $tr-border-color: #C8C8C8;
@@ -33,9 +34,14 @@ tr{
 	height: 40px;
 }
 
-tr.endpoint-row:hover{
+tr.data-row:hover{
 	background-color: $tr-hover-background-color;
 }
+
+caption{
+	margin-bottom:10px;
+}
+
 .edit-btn-div{
 	width:40px;	
 	float:right;
@@ -48,7 +54,8 @@ tr.endpoint-row:hover{
 		text-decoration: none;
 		&:hover {
 			text-decoration: underline;
-			background-color: #FFFFFF;
+			background-color: transparent;
+			color: $url-hover-color;
 		}
 		&:visited{
 			color: $url-color;

@@ -1,12 +1,21 @@
 Resty::Application.routes.draw do
+  
+  root :to => 'projects#show#', :id => '1'
 
-  root :to => 'resources#index'
+  resources :projects do
 
-  resources :resources do
+    resources :resources
+    
     resources :endpoints do
       resources :parameters
     end
+
   end
+
+  resources :users
+
+
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

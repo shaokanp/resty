@@ -1,5 +1,5 @@
 class ParametersController < ApplicationController
-  before_action :set_resource_endpoint
+  before_action :set_endpoint
   before_action :set_parameter, only: [:show, :edit, :update, :destroy]
 
   # GET /parameters
@@ -29,8 +29,8 @@ class ParametersController < ApplicationController
 
     respond_to do |format|
       if @parameter.save
-        format.html { redirect_to [@resource, @endpoint, @parameter], notice: 'Parameter was successfully created.' }
-        format.json { render action: 'show', status: :created, location: [@resource, @endpoint, @parameter] }
+        format.html { redirect_to [@project, @endpoint, @parameter], notice: 'Parameter was successfully created.' }
+        format.json { render action: 'show', status: :created, location: [@project, @endpoint, @parameter] }
       else
         format.html { render action: 'new' }
         format.json { render json: @parameter.errors, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class ParametersController < ApplicationController
   def update
     respond_to do |format|
       if @parameter.update(parameter_params)
-        format.html { redirect_to [@resource, @endpoint, @parameter], notice: 'Parameter was successfully updated.' }
+        format.html { redirect_to [@project, @endpoint, @parameter], notice: 'Parameter was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -67,9 +67,9 @@ class ParametersController < ApplicationController
 
   private
 
-    def set_resource_endpoint
-      @resource = Resource.find(params[:resource_id])
-      @endpoint = @resource.endpoints.find(params[:endpoint_id])
+    def set_endpoint
+      @project = Project.find(params[:project_id])
+      @endpoint = @project.endpoints.find(params[:endpoint_id])
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -79,6 +79,6 @@ class ParametersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parameter_params
-      params.require(:parameter).permit(:name, :optional, :example_value, :endpoint_id, :resource_id, :description)
+      params.require(:parameter).permit(:name, :optional, :example_value, :endpoint_id, :description, :project_id)
     end
 end

@@ -25,17 +25,18 @@
 	</table>
 	<br>
 	<div class="new-form-container hidden">
-		<%= form_for([resource, Endpoint.new], remote:true) do |f| %>
-			<div class="field">
-			    <%= f.text_field :method_type %>
-			    <%= f.text_field :url %>
-			    <%= f.text_field :description %>
-			</div>
-			<div class="actions" style="float:left;">
-				<%= f.submit %>
-			</div>
-		<% end %>
-	    <button class="cancel-creation">Cancel</button>
+	      <%= form_for([@project,Endpoint.new], remote:true) do |f| %>
+	        <div class="field">
+	            <%= f.text_field :method_type %>
+	            <%= f.text_field :url %>
+	            <%= f.text_field :description %>
+	            <%= f.hidden_field :resource_id, :value => resource.id %>
+	        </div>
+	        <div class="actions">
+	        	<%= f.submit %>
+	        </div>
+	      <% end %>
+	      <button class="cancel-creation">Cancel</button>
 	</div>
 	<button class="new-row-btn">New Endpoint</button>
 	<br>

@@ -1,8 +1,8 @@
 <tr id="<%= 'endpoint-' + endpoint.resource_id.to_s + '-' + endpoint.id.to_s %>" class="data-row">
-	<td class="rest-url"><%= link_to endpoint.method_type + ' ' + endpoint.url, resource_endpoint_path(endpoint.resource_id, endpoint.id) %></td>
+	<td class="rest-url"><%= link_to endpoint.method_type + ' ' + endpoint.url, [@project,endpoint] %></td>
 	<td class="description">
 		<%= endpoint.description %>
-		<div class="edit-btn-div v-hidden"><%= link_to 'Delete', resource_endpoint_path(endpoint.resource_id, endpoint.id), method: :delete, remote: true %></div>
+		<div class="edit-btn-div v-hidden"><%= link_to 'Delete', [@project,endpoint], method: :delete, remote: true %></div>
 	</td>
-	
+
 </tr>

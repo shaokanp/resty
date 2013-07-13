@@ -1,0 +1,206 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+@import url(utilities.css);
+.parameter-name {
+  font-weight: bold;
+  font-size: 12px;
+  width: 30%; }
+
+.parameter-description {
+  width: 70%; }
+
+.name-input-field {
+  width: 15%;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 5px; }
+
+.example-input-field {
+  width: 15%;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 5px; }
+
+.description-input-field {
+  width: 60%;
+  height: 40px;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 5px; }
+@import url(utilities.css);
+caption.resource-title div:first-child {
+  float: left; }
+caption.resource-title div:last-child {
+  float: right; }
+
+thead tr th:first-child {
+  width: 35%; }
+
+thead tr th:last-child {
+  width: 65%; }
+
+.rest-url a {
+  color: #3cb4ff;
+  text-decoration: none; }
+  .rest-url a:hover {
+    text-decoration: underline;
+    background-color: transparent;
+    color: #3264ff; }
+  .rest-url a:visited {
+    color: #3cb4ff; }
+
+.type-input-field {
+  width: 10%;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 5px; }
+
+.url-input-field {
+  width: 20%;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 5px; }
+
+.description-input-field {
+  width: 60%;
+  height: 40px;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 5px; }
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px; }
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px; }
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px; }
+
+a {
+  color: #000; }
+  a:visited {
+    color: #666; }
+  a:hover {
+    color: #fff;
+    background-color: #000; }
+
+div.field, div.actions {
+  margin-bottom: 10px; }
+
+#notice {
+  color: green; }
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table; }
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0; }
+  #error_explanation h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff; }
+  #error_explanation ul li {
+    font-size: 12px;
+    list-style: square; }
+div#global-container {
+  margin: 0 auto 0 auto;
+  width: 800px; }
+
+caption {
+  text-align: left;
+  font-size: 14px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px; }
+
+th {
+  color: #787878;
+  font-size: 12px;
+  text-align: left; }
+
+tr {
+  border: solid;
+  border-width: 1px 0;
+  border-color: #c8c8c8;
+  height: 40px; }
+
+tr.data-row:hover {
+  background-color: #eeeeee; }
+
+caption {
+  margin-bottom: 10px; }
+
+.new-form-container div.actions {
+  float: left; }
+
+.edit-btn-div {
+  width: 40px;
+  float: right;
+  margin-right: 10px; }
+
+.description {
+  color: #787878; }
+
+button {
+  height: 25px;
+  min-width: 50px;
+  color: #787878;
+  background-image: none;
+  background-color: #e4e4e4;
+  border: none; }
+
+div.actions input {
+  height: 25px;
+  min-width: 50px;
+  color: #787878;
+  background-image: none;
+  background-color: #e4e4e4;
+  border: none; }
+
+.hidden {
+  display: none; }
+
+.v-hidden {
+  visibility: hidden; }

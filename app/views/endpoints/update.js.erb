@@ -1,0 +1,4 @@
+$("<%= '#endpoint-' + @endpoint.id.to_s %> .rest-url a").html("<%= @endpoint.method_type + ' ' + @endpoint.url %>")
+$("<%= '#endpoint-' + @endpoint.id.to_s %> .description span").html("<%= @endpoint.description %>");
+$("<%= '#endpoint-' + @endpoint.id.to_s %>").removeClass('hidden');
+$("<%= '#edit-endpoint-' + @endpoint.id.to_s %>").addClass('hidden');

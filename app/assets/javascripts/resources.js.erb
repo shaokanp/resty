@@ -25,4 +25,10 @@ $(document).ready(function(){
 	$(document).delegate('caption.resource-title', 'mouseleave', function(event){
 		$(this).find('div.edit-btn-div').addClass('v-hidden');
 	});
+
+	$(document).delegate('.edit-btn', 'click', function(event){
+		var contentTr = $(this).closest('tr');
+		contentTr.addClass('hidden');
+		contentTr.siblings('tr#' + 'edit-' + contentTr.attr('id')).removeClass('hidden');
+	});
 });

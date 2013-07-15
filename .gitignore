@@ -18,6 +18,7 @@ rerun.txt
 pickle-email-*.html
 .project
 *.sqlite3
+.idea/*
 
 db/development.sqlite3
 

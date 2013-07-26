@@ -1,7 +1,26 @@
-<tr class="data-row" id="<%= 'parameter-' + @endpoint.id.to_s + '-' + parameter.id.to_s %>">
+<tr class="data-row editable" id="<%= 'parameter-' + parameter.id.to_s %>">
 	<td class="parameter-name"><%= parameter.name %></td>
 	<td class="parameter-description">
-		<%= parameter.description %>
-		<div class="edit-btn-div v-hidden"><%= link_to 'Delete', [@project, @endpoint, parameter], method: :delete, remote: true %></div>
+	    <%= parameter.description %>
+		<div class="edit-btn-div v-hidden">
+          <%= link_to 'Edit', 'javascript:;', class: 'edit-btn' %><br>
+          <%= link_to 'Delete', [@project, @endpoint, parameter], method: :delete, remote: true %>
+        </div>
 	</td>
+</tr>
+<tr class="data-row hidden editable" id="<%= 'edit-parameter-' + parameter.id.to_s %>">
+  <td>
+      <%= form_for([@project, @endpoint, parameter], remote:true, authenticity_token: form_authenticity_token) do |f| %>
+
+          <div class="field">
+            <%= f.text_field :name , class: 'name-input-field' , placeholder: 'Name'%>
+            <%= f.text_field :example_value , class: 'example-input-field' , placeholder: 'Example Value'%>
+            <%= f.text_area :description , class: 'description-input-field' , placeholder: 'Description'%>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+      <% end %>
+      <button class="cancel-creation">Cancel</button>
+  </td>
 </tr>

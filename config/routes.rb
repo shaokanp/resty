@@ -1,5 +1,7 @@
 Resty::Application.routes.draw do
   
+  resources :models
+
   root :to => 'home#show'
 
   resources :projects do

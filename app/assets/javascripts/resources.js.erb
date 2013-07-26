@@ -27,8 +27,8 @@ $(document).ready(function(){
 	});
 
 	$(document).delegate('.edit-btn', 'click', function(event){
-		var contentTr = $(this).closest('tr');
+		var contentTr = $(this).closest('.editable');
 		contentTr.addClass('hidden');
-		contentTr.siblings('tr#' + 'edit-' + contentTr.attr('id')).removeClass('hidden');
+		contentTr.siblings('.editable').removeClass('hidden');
 	});
 });

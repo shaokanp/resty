@@ -1,13 +1,29 @@
 <%= div_for resource do %>
   	<table>
 	  <caption class="resource-title">
-	  	<div>
-		  	<strong><%=resource.name%></strong> <!-- <%= link_to 'Show', [@project,resource] %> <%= link_to 'Edit', edit_project_resource_path(@project.id, resource.id) %> <%= link_to 'Destroy', [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %> -->
-		    <br><span class="description"><%=resource.description%></span>
-		</div>
-		<div class="edit-btn-div v-hidden">
-			<%= link_to 'Delete', [@project,resource], method: :delete, remote: true %>
-		</div>
+        <div id="<%= 'resource-' + resource.id.to_s %>" class="editable">
+            <div>
+                <strong class="name"><%=resource.name%></strong> <!-- <%= link_to 'Show', [@project,resource] %> <%= link_to 'Edit', edit_project_resource_path(@project.id, resource.id) %> <%= link_to 'Destroy', [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %> -->
+                <br><span class="description"><%=resource.description%></span>
+            </div>
+            <div class="edit-btn-div v-hidden">
+                <%= link_to 'Edit', 'javascript:;', class: 'edit-btn' %><br>
+                <%= link_to 'Delete', [@project,resource], method: :delete, remote: true %>
+            </div>
+        </div>
+        <div id="<%= 'edit-resource-' + resource.id.to_s %>" class="hidden editable">
+          <%= form_for([@project, resource], remote:true, authenticity_token: form_authenticity_token) do |f| %>
+
+              <div class="field">
+                <%= f.text_field :name , class: 'type-input-field' , placeholder: 'Name' %>
+                <%= f.text_area :description , class: 'description-input-field' , placeholder: 'Description' %>
+              </div>
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <% end %>
+          <button class="cancel-creation">Cancel</button>
+        </div>
 	  </caption>
 	  <thead>
 	    <tr>

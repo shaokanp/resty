@@ -21,9 +21,9 @@
 		  	<div class="new-form-container hidden">
 			      <%= form_for([@project, @endpoint, Parameter.new], remote:true, authenticity_token: form_authenticity_token) do |f| %>
 			        <div class="field">
-			            <%= f.text_field :name , class: "name-input-field" , placeholder: "Name"%>
-			            <%= f.text_field :example_value , class: "example-input-field" , placeholder: "Example Value"%>
-			            <%= f.text_area :description , class: "description-input-field" , placeholder: "Description"%>
+			            <%= f.text_field :name , class: 'name-input-field' , placeholder: 'Name'%>
+			            <%= f.text_field :example_value , class: 'example-input-field' , placeholder: 'Example Value'%>
+			            <%= f.text_area :description , class: 'description-input-field' , placeholder: 'Description'%>
 			        </div>
 			        <div class="actions">
 			        	<%= f.submit %>
@@ -35,4 +35,4 @@
 			<button class="new-row-btn">New Parameter</button>
 
 	</p>
-<div style="margin: 0 auto 0 auto; width:800px;">
+</div>

@@ -1,0 +1,5 @@
+$(document).delegate('.edit-btn', 'click', function(event){
+    var contentTr = $(this).closest('.editable');
+    contentTr.addClass('hidden');
+    contentTr.siblings('.editable').removeClass('hidden');
+});

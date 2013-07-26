@@ -7,10 +7,10 @@ $url-color: #3CB4FF;
 $url-hover-color: #3264FF;
 
 caption.resource-title{
-	div:first-child{
+	div div:first-child{
 		float:left;
 	}
-	div:last-child{
+	div div:last-child{
 		float:right;
 	}
 }

@@ -2,11 +2,13 @@
 	<td class="parameter-name"><%= parameter.name %></td>
 	<td class="parameter-description">
 	    <%= parameter.description %>
-		<div class="edit-btn-div v-hidden">
-          <%= link_to 'Edit', 'javascript:;', class: 'edit-btn' %><br>
-          <%= link_to 'Delete', [@project, @endpoint, parameter], method: :delete, remote: true %>
-        </div>
 	</td>
+    <td>
+      <div class="edit-btn-div v-hidden">
+        <%= link_to 'Edit', 'javascript:;', class: 'edit-btn' %><br>
+        <%= link_to 'Delete', [@project, @endpoint, parameter], method: :delete, remote: true %>
+      </div>
+    </td>
 </tr>
 <tr class="data-row hidden editable" id="<%= 'edit-parameter-' + parameter.id.to_s %>">
   <td>

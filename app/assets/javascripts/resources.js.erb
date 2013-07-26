@@ -34,6 +34,6 @@ $(document).ready(function(){
 
     $(document).delegate('button.cancel-update', 'click', function(event){
         $(this).closest('tr.editable').addClass('hidden');
-        $(this).closest('tr.editable').prev('tr.editable').removeClass('hidden');
+        $(this).closest('tr.editable').prev('tr.editable').removeClass("hidden");
     });
 });

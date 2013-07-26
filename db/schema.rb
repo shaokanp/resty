@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130725171606) do
+ActiveRecord::Schema.define(version: 20130726155737) do
 
   create_table "endpoints", force: true do |t|
     t.text     "description"
@@ -36,11 +36,12 @@ ActiveRecord::Schema.define(version: 20130725171606) do
     t.string   "name"
     t.boolean  "optional"
     t.string   "example_value"
-    t.integer  "endpoint_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
     t.integer  "project_id"
+    t.integer  "param_container_id"
+    t.string   "param_container_type"
   end
 
   create_table "participants", force: true do |t|

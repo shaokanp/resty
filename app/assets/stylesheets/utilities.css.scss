@@ -43,7 +43,7 @@ caption{
 	margin-bottom:10px;
 }
 
-.new-form-container div.actions{
+form div.actions{
 	float:left;
 }
 
@@ -64,6 +64,7 @@ button{
 	background-image: none;
 	background-color: $button-background-color;
 	border: none;
+    cursor: pointer;
 }
 
 div.actions input{
@@ -78,6 +79,11 @@ div.actions input{
 button.cancel-creation{
 	display: block;
 	float: left;
+}
+
+button.cancel-update{
+  display: block;
+  float: left;
 }
 
 .hidden{

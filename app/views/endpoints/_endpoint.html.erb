@@ -9,7 +9,7 @@
 	</td>
 </tr>
 <tr id="<%= 'edit-endpoint-' + endpoint.id.to_s %>" class="edit-row hidden editable">
-  <td>
+  <td colspan="2">
     <%= form_for([@project,endpoint], remote:true, authenticity_token: form_authenticity_token) do |f| %>
 
         <div class="field">
@@ -22,7 +22,7 @@
           <%= f.submit %>
         </div>
     <% end %>
-    <button class="cancel-creation">Cancel</button>
+    <button class="cancel-update">Cancel</button>
   </td>
 </tr>
 

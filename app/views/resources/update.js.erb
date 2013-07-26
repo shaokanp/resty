@@ -1,0 +1,4 @@
+$("<%= '#resource-' + @resource.id.to_s %> .name").html("<%= @resource.name %>")
+$("<%= '#resource-' + @resource.id.to_s %> .description").html("<%= @resource.description %>");
+$("<%= '#resource-' + @resource.id.to_s %>").removeClass('hidden');
+$("<%= '#edit-resource-' + @resource.id.to_s %>").addClass('hidden');

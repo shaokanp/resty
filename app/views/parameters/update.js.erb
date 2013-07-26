@@ -1,0 +1,5 @@
+$("<%= '#parameter-' + @parameter.id.to_s %> .parameter-name").html("<%= @parameter.name %>")
+$("<%= '#parameter-' + @parameter.id.to_s %> .example_value").html("<%= @parameter.example_value %>")
+$("<%= '#parameter-' + @parameter.id.to_s %> .parameter-description").html("<%= @parameter.description %>");
+$("<%= '#parameter-' + @parameter.id.to_s %>").removeClass('hidden');
+$("<%= '#edit-parameter-' + @parameter.id.to_s %>").addClass('hidden');

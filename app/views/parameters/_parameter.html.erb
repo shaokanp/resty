@@ -6,13 +6,13 @@
     <td>
       <div class="edit-btn-div v-hidden">
         <%= link_to 'Edit', 'javascript:;', class: 'edit-btn' %><br>
-        <%= link_to 'Delete', [@project, @endpoint, parameter], method: :delete, remote: true %>
+        <%= link_to 'Delete', [@project, @param_container, parameter], method: :delete, remote: true %>
       </div>
     </td>
 </tr>
 <tr class="data-row hidden editable" id="<%= 'edit-parameter-' + parameter.id.to_s %>">
   <td>
-      <%= form_for([@project, @endpoint, parameter], remote:true, authenticity_token: form_authenticity_token) do |f| %>
+      <%= form_for([@project, @param_container, parameter], remote:true, authenticity_token: form_authenticity_token) do |f| %>
 
           <div class="field">
             <%= f.text_field :name , class: 'name-input-field' , placeholder: 'Name'%>

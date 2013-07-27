@@ -69,8 +69,12 @@ class ParametersController < ApplicationController
 
     def set_param_container
       @project = Project.find(params[:project_id])
-      #klass = params[:param_container_type].capitalize.constantize
-      #@param_container = klass.find(params[:param_container_id])
+      if params.has_key?(:endpoint_id)
+        @param_container = @project.endpoints.find(params[:endpoint_id])
+      end
+      if params.has_key?(:model_id)
+        @param_container = @project.models.find(params[:model_id])
+      end
     end
 
     # Use callbacks to share common setup or constraints between actions.

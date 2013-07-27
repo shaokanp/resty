@@ -16,6 +16,7 @@
 	<p>
 		<strong>Parameters</strong><br>
 			<table id="parameters">
+                <% @param_container = @endpoint %>
 		  		<%= render @endpoint.parameters %>
 		  	</table>
 		  	<div class="new-form-container hidden">

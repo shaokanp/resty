@@ -39,6 +39,10 @@ tr.data-row:hover{
 	background-color: $tr-hover-background-color;
 }
 
+td{
+  padding: 6px;
+}
+
 caption{
 	margin-bottom:10px;
 }
@@ -74,6 +78,7 @@ div.actions input{
 	background-image: none;
 	background-color: $button-background-color;
 	border: none;
+    cursor: pointer;
 }
 
 button.cancel-creation{

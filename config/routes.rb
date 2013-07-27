@@ -1,6 +1,6 @@
 Resty::Application.routes.draw do
   
-  resources :models
+
 
   root :to => 'home#show'
 
@@ -9,6 +9,10 @@ Resty::Application.routes.draw do
     resources :resources
     
     resources :endpoints do
+      resources :parameters
+    end
+
+    resources :models do
       resources :parameters
     end
 

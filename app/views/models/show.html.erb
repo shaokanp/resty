@@ -1,16 +1,11 @@
 <% javascript_include_tag "application" %>
 
 <div id="global-container">
-  <h1><%=@model.method_type + ' ' + @model.url%></h1>
+  <h1><%=@model.name %></h1>
 
   <p>
     <strong>Description</strong><br>
     <%= @model.description %>
-  </p>
-
-  <p>
-    <strong>Detail</strong><br>
-    <%= @model.detail %>
   </p>
 
   <p>
@@ -22,7 +17,6 @@
     <%= form_for([@project, @model, Parameter.new], remote:true, authenticity_token: form_authenticity_token) do |f| %>
         <div class="field">
           <%= f.text_field :name , class: 'name-input-field' , placeholder: 'Name'%>
-          <%= f.text_field :example_value , class: 'example-input-field' , placeholder: 'Example Value'%>
           <%= f.text_area :description , class: 'description-input-field' , placeholder: 'Description'%>
         </div>
         <div class="actions">

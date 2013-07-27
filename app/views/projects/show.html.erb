@@ -3,6 +3,46 @@
 <div id="global-container">
   <h1><%= @project.name %></h1>
   <br>
+
+  <div id="model-container">
+    <table>
+      <caption class="model-title">
+        <strong>Models</strong>
+      </caption>
+      <thead>
+      <tr>
+        <th>
+          Model
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+        </th>
+      </tr>
+      </thead>
+      <tbody class="models">
+        <%= render @project.models %>
+      </tbody>
+    </table>
+    <div class="new-form-container hidden">
+      <%= form_for([@project,Model.new], remote:true, authenticity_token: form_authenticity_token) do |f| %>
+          <div class="field">
+            <%= f.text_field :name , class: "name-input-field" , placeholder: "Model Name" %>
+            <%= f.text_area :description , class: "description-input-field" , placeholder: "Description" %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+      <% end %>
+      <button class="cancel-creation">Cancel</button>
+    </div>
+    <button class="new-row-btn">New Model</button>
+    <br>
+    <br>
+    <br>
+  </div>
+
   <div class="new-form-container hidden">
       <%= form_for([@project, Resource.new], remote:true, authenticity_token: form_authenticity_token) do |f| %>
           <div class="field">

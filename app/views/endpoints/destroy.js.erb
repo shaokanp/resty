@@ -1,1 +1,2 @@
-$("tr#<%= 'endpoint-' + @endpoint.resource_id.to_s + '-' + @endpoint.id.to_s %>").fadeOut();
+$("tr#<%= 'endpoint-' + @endpoint.id.to_s %>").fadeOut();
+$("tr#<%= 'edit-endpoint-' + @endpoint.id.to_s %>").remove();

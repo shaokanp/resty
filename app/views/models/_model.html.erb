@@ -1,0 +1,28 @@
+
+    <tr id="<%= 'model-' + model.id.to_s %>" class="data-row editable">
+      <td class="rest-url"><%= link_to model.name, [@project,model] %></td>
+      <td class="description">
+        <span><%= model.description %></span>
+      </td>
+      <td>
+        <div class="edit-btn-div v-hidden">
+          <%= link_to 'Edit', 'javascript:;', class: 'edit-btn' %><br>
+          <%= link_to 'Delete', [@project,model], method: :delete, remote: true %>
+        </div>
+      </td>
+    </tr>
+    <tr id="<%= 'edit-model-' + model.id.to_s %>" class="edit-row hidden editable">
+      <td colspan="3">
+        <%= form_for([@project,model], remote:true, authenticity_token: form_authenticity_token) do |f| %>
+
+            <div class="field">
+              <%= f.text_field :name , class: "name-input-field" , placeholder: "Model Name" %>
+              <%= f.text_area :description , class: "description-input-field" , placeholder: "Description" %>
+            </div>
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+        <% end %>
+        <button class="cancel-update">Cancel</button>
+      </td>
+    </tr>

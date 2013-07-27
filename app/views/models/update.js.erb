@@ -1,0 +1,4 @@
+$("<%= '#model-' + @model.id.to_s %> .rest-url a").html("<%= @model.name %>")
+$("<%= '#model-' + @model.id.to_s %> .description span").html("<%= @model.description %>");
+$("<%= '#model-' + @model.id.to_s %>").removeClass('hidden');
+$("<%= '#edit-model-' + @model.id.to_s %>").addClass('hidden');

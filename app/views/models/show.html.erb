@@ -5,7 +5,7 @@
 
   <p>
     <strong>Description</strong><br>
-    <%= @model.description %>
+    <%= replace_model_link(@model.description, @project).html_safe %>
   </p>
 
   <p>

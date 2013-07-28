@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 1.0.1'
 
 gem 'rename'
 
+gem 'acts-as-taggable-on', '>= 2.4.1'
+
 group :test, :development do
   gem "rspec", "~> 2.0"
   gem "rspec-rails", "~> 2.0"

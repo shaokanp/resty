@@ -4,7 +4,7 @@
         <div id="<%= 'resource-' + resource.id.to_s %>" class="editable">
             <div>
                 <strong class="name"><%=resource.name%></strong> <!-- <%= link_to 'Show', [@project,resource] %> <%= link_to 'Edit', edit_project_resource_path(@project.id, resource.id) %> <%= link_to 'Destroy', [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %> -->
-                <br><span class="description"><%=resource.description%></span>
+                <br><span class="description"><%=replace_model_link(resource.description, @project).html_safe%></span>
             </div>
             <div class="edit-btn-div v-hidden">
                 <%= link_to 'Edit', 'javascript:;', class: 'edit-btn' %><br>

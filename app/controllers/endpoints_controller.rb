@@ -11,6 +11,7 @@ class EndpointsController < ApplicationController
   # GET /endpoints/1
   # GET /endpoints/1.json
   def show
+    @models = @project.models.all
   end
 
   # GET /endpoints/new

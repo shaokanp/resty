@@ -5,7 +5,7 @@
 
 	<p>
 	  	<strong>Description</strong><br>
-	  	<%= @endpoint.description %>
+	  	<%= replace_model_link(@endpoint.description, @project).html_safe %>
 	</p>
 
 	<p>

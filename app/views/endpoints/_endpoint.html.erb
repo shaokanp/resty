@@ -1,7 +1,7 @@
 <tr id="<%= 'endpoint-' + endpoint.id.to_s %>" class="data-row editable">
 	<td class="rest-url"><%= link_to endpoint.method_type + ' ' + endpoint.url, [@project,endpoint] %></td>
 	<td class="description">
-		<span><%= endpoint.description %></span>
+		<span><%= replace_model_link(endpoint.description, @project).html_safe %></span>
 	</td>
     <td>
       <div class="edit-btn-div v-hidden">
